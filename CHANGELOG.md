@@ -2,6 +2,23 @@
 
 All notable changes to `sverm` are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com), versioned by [SemVer](https://semver.org).
 
+## [1.1.0] — 2026-04-10
+
+Workshop-klargjøring for "KI-sverm i praksis" (Quben, Kongsberg, 15. april 2026).
+
+### Lagt til
+- **Inbox-modus** (`sverm launch inbox`) — hver instans ser hele listen av åpne cases og velger `--pick-min`..`--pick-max` selv basert på seed-affinitet. Gir bredde med agency: en «økonom»-seed dras mot penger-cases, en «forelder»-seed mot familie-cases.
+- **Batch-modus** (`sverm launch batch`) — alle åpne cases partisjoneres deterministisk (round-robin) mellom N instanser. Full dekning — hver case får minst én instans.
+- Multi-case debrief-format for inbox og batch: aggregering per case (hvor mange instanser dekket hver case, snitt-confidence per case) + rå outputs gruppert per case.
+- `--timeout SECONDS` for alle launch-moduser (default 900s) — dreper hengende prosesser og lar debrief kjøre på det som landet.
+- Bedre prosjekt-resolver: `sverm launch focus 1 --project 1` fungerer nå pålitelig med pipx-install. Søker både `cwd/10-projects/` og `~/sverm-projects/`. `SVERM_PROJECTS_DIR` overstyrer.
+- Hjelpsom feilmelding når `--project N` ikke finner noe — lister tilgjengelige prosjekter eller forklarer hvordan man oppretter et.
+- `sverm setup` defaulter nå til `~/sverm-projects/` istedenfor `cwd/10-projects/`, slik at workshopdeltakere ikke får uncommitted changes i den klonede repoen.
+
+### Endret
+- Default-modell endret fra `--medium -n 9` til `--small -n 4` for å spare abonnementskvoten på første flight. Eskalér manuelt med `--medium -n 9` eller `--large -n 9` når oppsettet er validert.
+- Codex `--large` mapper nå til `gpt-5.4` istedenfor `o3` (o3 finnes ikke i Codex CLI per april 2026). Codex har ingen dedikert reasoning-tier utover gpt-5.4, så «large» mapper midlertidig til samme modell som «medium» for Codex.
+
 ## [1.0.0] — 2026-04-10
 
 Første publiserte versjon. Workshop-klar release for "KI-sverm i praksis" (Quben, Kongsberg, 15. april 2026).
@@ -35,8 +52,6 @@ Første publiserte versjon. Workshop-klar release for "KI-sverm i praksis" (Qube
 - ClaudeRuntime bruker `--permission-mode bypassPermissions` med `--add-dir` begrensning for trygg filskriving
 
 ### Ikke i v1.0
-- **Inbox-modus** (hver instans velger cases selv) — kommer i v1.1
-- **Batch-modus** (partisjoner alle cases) — kommer i v1.1
 - **PyPI-publisering** — installasjon via `pip install git+https://...` inntil videre
 
 ---

@@ -134,11 +134,11 @@ Default lagringssted for nye prosjekter er `~/sverm-projects/`. Vil du ha dem et
 
 | Modus | Beskrivelse |
 |-------|-------------|
-| **focus** | Alle instanser jobber med én case. 9+ perspektiver på én problemstilling. Best for dybde. |
-| **inbox** | Hver instans velger 1-3 cases selv. Bred dekning. *(under utvikling)* |
-| **batch** | Alle cases partisjoneres og fordeles. Full dekning. *(under utvikling)* |
+| **focus** | Alle instanser jobber med én case. N perspektiver på én problemstilling. Best for dybde. |
+| **inbox** | Hver instans ser hele listen av åpne cases og velger 1-3 selv basert på seed-affinitet. Bredde med agency. |
+| **batch** | Alle åpne cases partisjoneres deterministisk mellom instansene. Full dekning. |
 
-I denne første publiserte versjonen er **focus-modus** fullt støttet. Inbox og batch kommer i v1.1.
+Alle tre modusene er fullt støttet. Velg modus etter intensjonen: **focus** når du vil gå dypt på ett problem, **inbox** når du vil se hva svermen naturlig dras mot (instansene velger selv), og **batch** når du trenger at hver case blir dekket av minst én instans.
 
 ---
 

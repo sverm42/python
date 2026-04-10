@@ -50,13 +50,19 @@ Hvis du er en AI-instans spawnet av dette systemet:
 ### Quick Start
 
 ```bash
-# Se alle åpne cases
+# Hjelp og kommandoer
 sverm launch --help
 
-# Start flight: 4 små instanser på case #1 (default)
+# Focus mode — 4 små instanser på case #1 (default model + count)
 sverm launch focus 1
 
-# Dry-run (test uten å starte ekte instanser)
+# Inbox mode — hver instans velger 1-3 cases selv basert på seed
+sverm launch inbox
+
+# Batch mode — alle cases partisjoneres deterministisk
+sverm launch batch
+
+# Dry-run (test uten å bruke tokens)
 sverm launch focus 1 --dry-run
 
 # Eskaler når oppsettet er validert

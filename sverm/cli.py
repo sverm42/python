@@ -134,33 +134,53 @@ def build_parser() -> argparse.ArgumentParser:
     launch_p = sub.add_parser("launch", help="Start en sverm-flight.")
     launch_sub = launch_p.add_subparsers(dest="mode")
 
+    def _add_common_launch_flags(p: argparse.ArgumentParser) -> None:
+        """Felles flagg for focus/inbox/batch-subparsere."""
+        model_group = p.add_mutually_exclusive_group()
+        model_group.add_argument("--small", dest="model", action="store_const", const="small",
+                                 help="Rask/billig (Claude: haiku, Codex: gpt-5.4-mini) [default]")
+        model_group.add_argument("--medium", dest="model", action="store_const", const="medium",
+                                 help="Balansert (Claude: sonnet, Codex: gpt-5.4)")
+        model_group.add_argument("--large", dest="model", action="store_const", const="large",
+                                 help="Dyp/dyr (Claude: opus, Codex: gpt-5.4)")
+        p.set_defaults(model="small")
+
+        p.add_argument("-n", "--count", type=int, default=4,
+                       help="Antall instanser (default: 4)")
+        p.add_argument("--project", default=None,
+                       help="Prosjekt: nummer (1), navn (1-boligkjop) eller full path")
+        p.add_argument("--runtime", type=str, default=None,
+                       help="Runtime: claude, codex, dry-run (default: auto-detect)")
+        p.add_argument("--dry-run", action="store_true",
+                       help="Simuler flight uten ekte prosesser")
+        p.add_argument("--no-monitor", action="store_true",
+                       help="Ikke vent på at instanser lander")
+        p.add_argument("--timeout", type=int, default=900,
+                       help="Maks sekunder for hele flighten (default: 900). 0 = uendelig.")
+
     # launch focus
     focus_p = launch_sub.add_parser("focus", help="Focus mode: alle instanser på én case.")
     focus_p.add_argument("case_id", type=int, help="Case-ID å fokusere på")
+    _add_common_launch_flags(focus_p)
 
-    # Modell: --small/--medium/--large (runtime-agnostisk)
-    model_group = focus_p.add_mutually_exclusive_group()
-    model_group.add_argument("--small", dest="model", action="store_const", const="small",
-                             help="Rask/billig (Claude: haiku, Codex: gpt-5.4-mini) [default]")
-    model_group.add_argument("--medium", dest="model", action="store_const", const="medium",
-                             help="Balansert (Claude: sonnet, Codex: gpt-5.4)")
-    model_group.add_argument("--large", dest="model", action="store_const", const="large",
-                             help="Dyp/dyr (Claude: opus, Codex: gpt-5.4)")
-    focus_p.set_defaults(model="small")
+    # launch inbox
+    inbox_p = launch_sub.add_parser(
+        "inbox",
+        help="Inbox mode: hver instans ser alle åpne cases og velger 1-3 selv "
+             "basert på seed-affinitet.",
+    )
+    _add_common_launch_flags(inbox_p)
+    inbox_p.add_argument("--pick-min", type=int, default=1,
+                         help="Minimum antall cases hver instans skal velge (default: 1)")
+    inbox_p.add_argument("--pick-max", type=int, default=3,
+                         help="Maks antall cases hver instans skal velge (default: 3)")
 
-    focus_p.add_argument("-n", "--count", type=int, default=4,
-                         help="Antall instanser (default: 4)")
-    focus_p.add_argument("--project", default=None,
-                         help="Prosjekt: nummer (1), navn (1-boligkjop) eller full path")
-    focus_p.add_argument("--runtime", type=str, default=None,
-                         help="Runtime: claude, codex, dry-run (default: auto-detect)")
-    focus_p.add_argument("--dry-run", action="store_true",
-                         help="Simuler flight uten ekte prosesser")
-    focus_p.add_argument("--no-monitor", action="store_true",
-                         help="Ikke vent på at instanser lander")
-    focus_p.add_argument("--timeout", type=int, default=900,
-                         help="Maks sekunder å vente på at en instans lander "
-                              "(default: 900). 0 = uendelig.")
+    # launch batch
+    batch_p = launch_sub.add_parser(
+        "batch",
+        help="Batch mode: alle åpne cases partisjoneres deterministisk mellom instansene.",
+    )
+    _add_common_launch_flags(batch_p)
 
     # --- inspect ---
     inspect_p = sub.add_parser("inspect", help="Vis prosjektstatus og struktur.")
@@ -212,6 +232,52 @@ def cmd_launch_focus(args: argparse.Namespace) -> int:
     launch_focus(
         project_dir=project_dir,
         case_id=args.case_id,
+        model=args.model,
+        instance_count=args.count,
+        runtime=runtime,
+        dry_run=args.dry_run,
+        monitor=not args.no_monitor,
+        timeout=args.timeout,
+    )
+    return 0
+
+
+def cmd_launch_inbox(args: argparse.Namespace) -> int:
+    from sverm.launch import launch_inbox
+    from sverm.runtime import get_runtime
+
+    project_dir = resolve_project(args.project)
+
+    runtime = None
+    if args.runtime:
+        runtime = get_runtime(args.runtime)
+
+    launch_inbox(
+        project_dir=project_dir,
+        model=args.model,
+        instance_count=args.count,
+        pick_min=args.pick_min,
+        pick_max=args.pick_max,
+        runtime=runtime,
+        dry_run=args.dry_run,
+        monitor=not args.no_monitor,
+        timeout=args.timeout,
+    )
+    return 0
+
+
+def cmd_launch_batch(args: argparse.Namespace) -> int:
+    from sverm.launch import launch_batch
+    from sverm.runtime import get_runtime
+
+    project_dir = resolve_project(args.project)
+
+    runtime = None
+    if args.runtime:
+        runtime = get_runtime(args.runtime)
+
+    launch_batch(
+        project_dir=project_dir,
         model=args.model,
         instance_count=args.count,
         runtime=runtime,
@@ -280,7 +346,11 @@ def main() -> int:
     if args.command == "launch":
         if args.mode == "focus":
             return cmd_launch_focus(args)
-        print("Error: specify launch mode (focus)")
+        if args.mode == "inbox":
+            return cmd_launch_inbox(args)
+        if args.mode == "batch":
+            return cmd_launch_batch(args)
+        print("Error: specify launch mode (focus, inbox, batch)")
         return 1
     if args.command == "inspect":
         return cmd_inspect(resolve_project(args.project))
