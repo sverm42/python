@@ -1,0 +1,104 @@
+{
+  "name": "karriere-beslutning",
+  "domain": "Anders (42) jobber som senior programvareutvikler i et stort norsk finansselskap. Fast, trygt, kjent. Han har fått et konkret tilbud fra en tidlig-fase startup — halvparten av lønnen, men betydelige aksjeopsjoner og sjansen til å bygge noe meningsfullt. Han har familie, lån, og en karriere som har gått stødig fremover siden han var 24.",
+  "goal": "Hjelp Anders med å vurdere om han skal ta startup-tilbudet eller bli værende. Analyser beslutningen fra flere vinkler — økonomi, familie, personlig utvikling, risiko — og gi konkrete råd.",
+  "key_info": [
+    "Anders er 42 år, gift, to barn (8 og 11 år)",
+    "Nåværende stilling: senior utvikler i et stort finansselskap. 15 år ansettelse. 1.1 MNOK i årslønn inkludert bonus og pensjon",
+    "Tilbudet: CTO-rolle i 4-personers startup. Grunnlønn 600 000 kr + 3% aksjeopsjoner med 4 års vesting",
+    "Startupen har fått 5 MNOK i pre-seed og 12 måneder runway",
+    "Anders er utbrent — han sier selv at han 'bare sitter og vedlikeholder legacy-kode'",
+    "Samlet boliglån: 4.2 MNOK. Månedlige faste utgifter: ca 65 000 kr",
+    "Ektefellen jobber deltid (60%) i undervisning, 420 000 kr i årslønn",
+    "Anders har 1.8 MNOK i oppsparte midler (bufferkonto + fondssparing)",
+    "Han har tidligere gründer-erfaring — forsøkte i 2014, sluttet etter 8 måneder"
+  ],
+  "axes": [
+    {
+      "name": "rolle",
+      "words": [
+        {"word": "karriererådgiver", "weight": 0.70, "description": "Langsiktig karrieretenking, markedsverdier, timing"},
+        {"word": "partner", "weight": 0.65, "description": "Familielivet, praktisk hverdag, felles økonomi"},
+        {"word": "venn", "weight": 0.55, "description": "Ser på Anders som menneske, ikke case"},
+        {"word": "HR-ekspert", "weight": 0.45, "description": "Kontraktsvilkår, opsjoner, vesting, exit-klausuler"},
+        {"word": "ekskollega-startup", "weight": 0.35, "description": "Har prøvd samme hopp, vet hvordan det egentlig er"},
+        {"word": "terapeut", "weight": 0.20, "description": "Burnout, identitet, hva ønsker Anders egentlig?"}
+      ]
+    },
+    {
+      "name": "tidshorisont",
+      "words": [
+        {"word": "umiddelbart", "weight": 0.60, "description": "Neste 3-6 måneder — overgangen og hverdagssjokk"},
+        {"word": "1-3år", "weight": 0.75, "description": "Startupen enten vokser eller dør. Anders' daglige liv"},
+        {"word": "5-10år", "weight": 0.70, "description": "Er Anders fortsatt i bransjen? Hvordan ser CV-en ut?"},
+        {"word": "resten-av-karrieren", "weight": 0.50, "description": "20+ år igjen før pensjon. Totalbildet"},
+        {"word": "generasjon", "weight": 0.25, "description": "Hva barna lærer av pappas valg"}
+      ]
+    },
+    {
+      "name": "motivasjon",
+      "words": [
+        {"word": "mening", "weight": 0.75, "description": "Bygge noe som betyr noe, ikke bare vedlikeholde"},
+        {"word": "mestring", "weight": 0.65, "description": "Nye utfordringer, faglig vekst, strekke seg"},
+        {"word": "trygghet", "weight": 0.60, "description": "Forutsigbar inntekt, trygg jobb, familiens ro"},
+        {"word": "økonomi", "weight": 0.50, "description": "Lønn, bonus, opsjoner, total kompensasjon"},
+        {"word": "status", "weight": 0.30, "description": "Tittel, anerkjennelse, hvordan andre ser deg"},
+        {"word": "frihet", "weight": 0.20, "description": "Autonomi, egen retning, mindre byråkrati"}
+      ]
+    },
+    {
+      "name": "risiko",
+      "words": [
+        {"word": "startup-feiler", "weight": 0.75, "description": "Startupen går konkurs innen 12-24 mnd"},
+        {"word": "inntektstap", "weight": 0.70, "description": "500 000 kr lavere årslønn = reell familieøkonomisk endring"},
+        {"word": "utbrenthet-igjen", "weight": 0.55, "description": "Startup-press kan forverre, ikke fikse, utbrentheten"},
+        {"word": "familiestress", "weight": 0.50, "description": "Usikkerhet påvirker ektefelle og barn"},
+        {"word": "kompetanseforeldelse", "weight": 0.35, "description": "Hvis han blir i nåværende jobb: teknologien glir fra ham"},
+        {"word": "anger", "weight": 0.25, "description": "Å aldri vite hvordan startupen kunne gått"}
+      ]
+    },
+    {
+      "name": "beslutningsramme",
+      "words": [
+        {"word": "rasjonell", "weight": 0.65, "description": "Regnearket, scenarier, ren kost-nytte"},
+        {"word": "verdibasert", "weight": 0.60, "description": "Hva vil jeg at livet mitt skal stå for?"},
+        {"word": "intuitiv", "weight": 0.55, "description": "Hva sier magefølelsen etter nok refleksjon?"},
+        {"word": "risikobasert", "weight": 0.50, "description": "Downside-scenarier og worst-case-planlegging"},
+        {"word": "fase-i-livet", "weight": 0.40, "description": "42 år med familie er ikke 25 år uten"},
+        {"word": "mimetisk", "weight": 0.15, "description": "Hva gjør andre i samme situasjon? Hvem ser jeg opp til?"}
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "title": "Bør Anders ta startup-tilbudet?",
+      "description": "Helhetlig vurdering av beslutningen. Gi en klar anbefaling — ja, nei eller en tredje vei — og begrunn det. Ta hensyn til hans livssituasjon, ikke bare karrieren.",
+      "priority": "critical",
+      "tags": "beslutning,helhet"
+    },
+    {
+      "title": "Hvordan bør Anders forhandle hvis han velger å ta tilbudet?",
+      "description": "Vurder hva han kan og bør forhandle om: grunnlønn, opsjoner, vesting-vilkår, anti-dilution, exit-klausuler, tittel, arbeidsbelastning. Hva er hans posisjon?",
+      "priority": "high",
+      "tags": "forhandling,kontrakt"
+    },
+    {
+      "title": "Finnes det en tredje vei?",
+      "description": "Må Anders velge mellom status quo og hele hoppet? Kan han bli værende og gjøre noe for å løse utbrentheten? Kan han starte noe på si? Kan han forhandle permisjon? Utforsk alternativer han ikke har tenkt på.",
+      "priority": "high",
+      "tags": "alternativer,kreativitet"
+    },
+    {
+      "title": "Hva vil denne beslutningen bety for familien?",
+      "description": "Fokuser på hvordan beslutningen påvirker ektefelle og barn — praktisk, økonomisk, emosjonelt. Hva må diskuteres? Hva må planlegges? Hva er de ærlige kostnadene?",
+      "priority": "medium",
+      "tags": "familie,konsekvens"
+    },
+    {
+      "title": "Hva er worst case og hvor galt kan det gå?",
+      "description": "Hvis startupen feiler 14 måneder inn, hvor står Anders da? Kan han få en jobb tilbake i finansbransjen? Hvordan påvirker det familieøkonomien? Lag et konkret worst-case-scenario og kommentar på sannsynligheten.",
+      "priority": "medium",
+      "tags": "worst-case,risiko"
+    }
+  ]
+}

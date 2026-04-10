@@ -1,0 +1,103 @@
+{
+  "name": "restaurant-launch",
+  "domain": "Maria er kokk med 15 års erfaring fra Oslo-restauranter. Hun vurderer å åpne en bistro med lokal, sesongbasert mat i Bjerke — et område i rask utvikling. Hun har 800 000 kr egenkapital, ser på et lokale på 220m², og har et tentativt konsept klart. Nå må hun bestemme seg for om, hvordan og når hun skal lansere.",
+  "goal": "Hjelp Maria med å vurdere restaurantlanseringen fra mange vinkler — forretning, konsept, finansiering, drift, marked — og gi konkrete råd om hvordan hun bør gå videre.",
+  "key_info": [
+    "Maria er 38 år, har jobbet som souschef og kjøkkensjef i 15 år",
+    "Egenkapital: 800 000 kr. Ingen ekstern finansiering ennå",
+    "Lokalet er 220m², 45 plasser, tidligere café, 35 000 kr/mnd i husleie",
+    "Bjerke-området har fått 3000 nye innbyggere siste 5 år og flere er på vei",
+    "Konseptet: 8-10 retter, bytter månedlig, fokus på norske råvarer",
+    "Nærmeste konkurrent er en pizzeria (3 min unna) og en kafé (5 min unna)",
+    "Maria har ikke ledererfaring fra egen virksomhet",
+    "Hun har en potensiell investor som kan bidra med 1.5 MNOK mot 30% eierskap"
+  ],
+  "axes": [
+    {
+      "name": "perspektiv",
+      "words": [
+        {"word": "kokk", "weight": 0.75, "description": "Kjøkken, kvalitet, menydesign, mattradisjoner"},
+        {"word": "gründer", "weight": 0.70, "description": "Forretningsmodell, vekst, skalerbarhet"},
+        {"word": "investor", "weight": 0.60, "description": "Avkastning, risiko, exit, unit economics"},
+        {"word": "gjest", "weight": 0.55, "description": "Opplevelse, pris, tilgjengelighet, gjenbesøk"},
+        {"word": "anmelder", "weight": 0.25, "description": "Originalitet, håndverk, posisjonering i bransjen"},
+        {"word": "nabo", "weight": 0.15, "description": "Støy, trafikk, nabolagets karakter"}
+      ]
+    },
+    {
+      "name": "fase",
+      "words": [
+        {"word": "prelaunch", "weight": 0.70, "description": "Finansiering, lokale, tillatelser, teambygging"},
+        {"word": "opening", "weight": 0.75, "description": "Første 4 uker — når alt kan gå galt"},
+        {"word": "første-halvår", "weight": 0.60, "description": "Etablere rutiner, finne fotfeste"},
+        {"word": "år-1", "weight": 0.50, "description": "Har konseptet holdt? Lønnsomhet?"},
+        {"word": "år-3", "weight": 0.30, "description": "Modenhet, utvidelse, konkurranse-endring"}
+      ]
+    },
+    {
+      "name": "risiko",
+      "words": [
+        {"word": "cashflow", "weight": 0.80, "description": "Manglende likviditet, lønn til ansatte, leverandører"},
+        {"word": "bemanning", "weight": 0.65, "description": "Finne og beholde kokker, servitører, renholder"},
+        {"word": "konkurranse", "weight": 0.50, "description": "Nye restauranter i området, delivery, kjeder"},
+        {"word": "konsept-feil", "weight": 0.45, "description": "Hva hvis markedet ikke vil ha det hun lager?"},
+        {"word": "burnout", "weight": 0.35, "description": "Kokker brenner ut — særlig eiere som er på kjøkkenet"},
+        {"word": "regulering", "weight": 0.15, "description": "Mattilsynet, skjenkebevilling, byggesak"}
+      ]
+    },
+    {
+      "name": "konkurransefortrinn",
+      "words": [
+        {"word": "håndverk", "weight": 0.70, "description": "Teknisk kvalitet gjestene merker"},
+        {"word": "lokal-forankring", "weight": 0.65, "description": "Kjenne naboer, leverandører, lokalmiljø"},
+        {"word": "pris", "weight": 0.45, "description": "Rimeligere enn konkurrenter med samme kvalitet"},
+        {"word": "fleksibilitet", "weight": 0.40, "description": "Månedlig menybytte, sesongtilpasning"},
+        {"word": "historie", "weight": 0.30, "description": "Marias bakgrunn, personlig narrativ, autentisitet"},
+        {"word": "opplevelse", "weight": 0.25, "description": "Atmosfære, interiør, service-stil"}
+      ]
+    },
+    {
+      "name": "finansiering",
+      "words": [
+        {"word": "egenkapital", "weight": 0.70, "description": "Full kontroll, høyere risiko"},
+        {"word": "investor", "weight": 0.65, "description": "Ekstern kapital, men mister noe kontroll"},
+        {"word": "banklån", "weight": 0.50, "description": "Tradisjonell finansiering, renter, kausjon"},
+        {"word": "crowdfunding", "weight": 0.30, "description": "Folkefinansiering, markedsføring på kjøpet"},
+        {"word": "staget-lansering", "weight": 0.25, "description": "Pop-up først, fast lokale senere"},
+        {"word": "partnerskap", "weight": 0.15, "description": "Dele lokale med en annen virksomhet"}
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "title": "Bør Maria ta investor-tilbudet eller beholde full eierskap?",
+      "description": "Investor tilbyr 1.5 MNOK mot 30% av selskapet. Vurder avveiningen mellom kapital, kontroll, risiko og muligheten til å vokse. Gi en klar anbefaling med begrunnelse.",
+      "priority": "critical",
+      "tags": "finansiering,eierskap,beslutning"
+    },
+    {
+      "title": "Hva er det største hullet i Marias kompetanse?",
+      "description": "Hun er en erfaren kokk, men har aldri drevet egen virksomhet. Identifiser den viktigste kompetanseutfordringen og foreslå hvordan hun kan fylle den.",
+      "priority": "high",
+      "tags": "kompetanse,bemanning"
+    },
+    {
+      "title": "Er Bjerke riktig beliggenhet for dette konseptet?",
+      "description": "Analyser om Bjerke-området matcher Marias konsept (lokal, sesongbasert, bistro-nivå). Hva taler for? Hva taler mot? Finnes det bedre alternativer i nærheten?",
+      "priority": "high",
+      "tags": "lokasjon,marked"
+    },
+    {
+      "title": "Hvordan bør åpningsuken se ut?",
+      "description": "Første 7 dager avgjør mye av omdømme og drift-rytme. Foreslå en konkret plan for åpningsuken — bemanning, markedsføring, meny, invitasjoner, presse.",
+      "priority": "medium",
+      "tags": "launch,drift"
+    },
+    {
+      "title": "Hva er realistisk cashflow de første 12 månedene?",
+      "description": "Bygg en enkel, realistisk cashflow-modell. Hva må til for at Maria går break-even? Hva må til for at hun går konkurs? Hvor tynn er marginen?",
+      "priority": "medium",
+      "tags": "økonomi,cashflow"
+    }
+  ]
+}

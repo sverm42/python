@@ -8,8 +8,9 @@ Første publiserte versjon. Workshop-klar release for "KI-sverm i praksis" (Qube
 
 ### Lagt til
 - Python-first orkestrering som fungerer på macOS, Windows og Linux
-- Runtime-abstraksjon: støtter både Claude Code CLI og OpenAI Codex CLI
-- Auto-detekt av tilgjengelig runtime (Claude prioriteres på macOS, Codex på Windows)
+- Runtime-abstraksjon: støtter både Claude Code CLI og OpenAI Codex CLI på alle tre plattformer
+- Auto-detekt av tilgjengelig runtime (Claude prioriteres hvis begge er installert)
+- `SVERM_RUNTIME`-miljøvariabel for eksplisitt runtime-override
 - `sverm setup` — opprett prosjekt fra JSON-config
 - `sverm launch focus` — kjør N instanser på én case med vektede frequency seeds
 - `sverm inspect` — vis prosjektstatus og cases
@@ -17,15 +18,21 @@ Første publiserte versjon. Workshop-klar release for "KI-sverm i praksis" (Qube
 - `sverm mirror` — synk DB til CASES.md
 - `--dry-run`-modus for testing uten ekte AI-prosesser
 - Innebygd demo-prosjekt: `boligkjop-analyse` — nøytralt, universelt relaterbart
+- Fem fullstendige eksempel-configs i `examples/`: boligkjop, restaurant, karriere, produktlansering, kommune-beslutning
+- `docs/SEED-DESIGN.md` — dedikert guide for seed-design med regler, eksempler og kvalitetssjekkliste
+- `docs/ARCHITECTURE.md` — teknisk oversikt over moduler, datamodell, fil-kontrakter og ekstensjonspunkter
+- `Før workshopen`-installeringssjekkliste i README
 - PolyForm Noncommercial License 1.0.0
 
 ### Tekniske detaljer
 - Python 3.11+
+- Ingen eksterne Python-dependencies (kun stdlib)
 - SQLite-basert prosjektdatabase (seeds, cases, flights, instances, outputs, debriefs)
 - UTF-8 overalt — full støtte for æøå i alle lag (kode, DB, filer, prompter)
 - Atomisk DEBRIEF.lock for å sikre at kun én instans kjører debrief
 - Graceful fallback for instance-ID allokering (lokal sekvens hvis HQ-integrasjon ikke finnes)
-- Cross-platform: samme JSON-config fungerer på alle plattformer
+- Cross-platform: samme JSON-config og samme kode fungerer på alle plattformer
+- ClaudeRuntime bruker `--permission-mode bypassPermissions` med `--add-dir` begrensning for trygg filskriving
 
 ### Ikke i v1.0
 - **Inbox-modus** (hver instans velger cases selv) — kommer i v1.1

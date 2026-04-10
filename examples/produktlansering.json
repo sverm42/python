@@ -1,0 +1,110 @@
+{
+  "name": "produktlansering-saas",
+  "domain": "Et norsk tech-team (5 personer) har brukt 14 måneder på å bygge en AI-drevet tjeneste for småbedrifts-bokføring. De har beta-testet med 50 brukere i 3 måneder og fått positive signaler — men også tydelig feedback på funksjonalitet som mangler. Nå står de foran den viktigste beslutningen: Hvordan og når lanserer de offentlig? Freemium eller betalt fra dag 1? Hvilken målgruppe først? Hva venter de med?",
+  "goal": "Hjelp tech-teamet med å legge en realistisk go-to-market-strategi for de neste 6 månedene. Ikke generelle råd — konkret, handlbare valg med prioritering og begrunnelse.",
+  "key_info": [
+    "Team: 2 tekniske grundere, 1 designer, 1 forretningsutvikler, 1 nylig ansatt customer success",
+    "Produkt: AI-assistent som kategoriserer transaksjoner, foreslår konteringer, bygger rapporter",
+    "Teknologi: integrasjon mot DNB, Sparebank 1, Nordea. Støtter kun norsk bokføring (MVA, NS 4102)",
+    "Beta-brukere: 50 småbedrifter med 1-5 ansatte. 35 aktive ukentlig. 8 som 'poster på LinkedIn om produktet uoppfordret'",
+    "Seed-finansiering: 8 MNOK fra norsk early-stage fond + 2 MNOK fra angel investors. Runway til Q4 neste år",
+    "Konkurranse: Tripletex, Fiken, Visma eAccounting — alle etablerte, ingen med skikkelig AI",
+    "Prisstruktur under vurdering: 199/299/499 kr per måned, eller freemium med betalte plugins",
+    "Teamet er delt: to vil lansere i morgen, to vil polere i tre måneder til"
+  ],
+  "axes": [
+    {
+      "name": "rolle",
+      "words": [
+        {"word": "grunder", "weight": 0.75, "description": "Visjon, urgency, opportunity cost av å vente"},
+        {"word": "investor", "weight": 0.70, "description": "Runway, traction, milestones, neste runde"},
+        {"word": "kunde", "weight": 0.65, "description": "Hvorfor skal jeg betale? Hva løser dette for meg?"},
+        {"word": "ingeniør", "weight": 0.55, "description": "Teknisk gjeld, skalerbarhet, vedlikehold"},
+        {"word": "marketer", "weight": 0.50, "description": "Kanaler, posisjonering, budskap, conversion"},
+        {"word": "konkurrent", "weight": 0.25, "description": "Hvordan ville en eksisterende spiller reagere?"}
+      ]
+    },
+    {
+      "name": "marked",
+      "words": [
+        {"word": "small-business", "weight": 0.75, "description": "1-5 ansatte, enkeltpersonforetak, småselskap"},
+        {"word": "regnskapsfører", "weight": 0.65, "description": "Proff-brukere som håndterer mange kunder"},
+        {"word": "solopreneur", "weight": 0.55, "description": "Frilansere, konsulenter, ENK"},
+        {"word": "startup", "weight": 0.45, "description": "Tech-startups som vil ha moderne verktøy"},
+        {"word": "tradisjonelt-smb", "weight": 0.35, "description": "Håndverkere, butikkinnehavere, håndfast næring"},
+        {"word": "nisje", "weight": 0.15, "description": "Spesifikk bransje hvor de kan dominere raskt"}
+      ]
+    },
+    {
+      "name": "lansering-strategi",
+      "words": [
+        {"word": "soft-launch", "weight": 0.70, "description": "Gradvis, kun via inviterte, kontrollert vekst"},
+        {"word": "PR-launch", "weight": 0.55, "description": "Pressemelding, tech-media, ventelister"},
+        {"word": "product-hunt", "weight": 0.45, "description": "Launch på Product Hunt eller tilsvarende, jakt på buzz"},
+        {"word": "ventelisten", "weight": 0.40, "description": "Kunstig knapphet, FOMO, invitasjonsbasert"},
+        {"word": "freemium", "weight": 0.35, "description": "Gratis basisbruk, betal for premium"},
+        {"word": "partner-salg", "weight": 0.25, "description": "Gjennom regnskapsbyråer og bank-partnerships"}
+      ]
+    },
+    {
+      "name": "trussel",
+      "words": [
+        {"word": "konkurrent-kopierer", "weight": 0.70, "description": "Tripletex eller Fiken bygger samme AI på 6 mnd"},
+        {"word": "teknologi-skift", "weight": 0.55, "description": "OpenAI/Anthropic lanserer regnskaps-native tools"},
+        {"word": "regulering", "weight": 0.45, "description": "GDPR, regnskapsloven, skatteetaten — alt kan endre seg"},
+        {"word": "penger-slutt", "weight": 0.40, "description": "Runway slutter før neste runde kan reises"},
+        {"word": "team-splitter", "weight": 0.30, "description": "Interne uenigheter, grunder-konflikt, key person risk"},
+        {"word": "kunde-nekter-å-betale", "weight": 0.20, "description": "Produkt løser ikke reelt problem, churn blir høy"}
+      ]
+    },
+    {
+      "name": "fordel",
+      "words": [
+        {"word": "teknologi", "weight": 0.70, "description": "Bedre AI, bedre UX, bedre automatisering"},
+        {"word": "timing", "weight": 0.65, "description": "AI-hype er på topp, SMB-er prøver nye verktøy"},
+        {"word": "team", "weight": 0.55, "description": "Kvalitet, erfaring, kompetansemix, execution-evne"},
+        {"word": "fokus", "weight": 0.50, "description": "Kun norsk marked, kun bokføring, gjør én ting bra"},
+        {"word": "nettverk", "weight": 0.35, "description": "Grunder-kjennskap, investor-network, tidlige ambassadører"},
+        {"word": "kapital", "weight": 0.15, "description": "Finansielt ryggrad, kan tåle 12-18 mnd uten inntekt"}
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "title": "Lanserer vi om 1 måned eller om 3 måneder?",
+      "description": "Teamet er delt. To vil lansere nå (før konkurrenter reagerer), to vil polere (før en dårlig first impression dreper produktet). Gi en klar anbefaling og begrunn den.",
+      "priority": "critical",
+      "tags": "timing,lansering"
+    },
+    {
+      "title": "Freemium eller betalt fra dag 1?",
+      "description": "Analyser pros og cons ved freemium (gratis basis, betal for premium) vs rent betalt (199-499 kr/mnd). Hva passer best for denne målgruppen? Gi en modell-anbefaling.",
+      "priority": "critical",
+      "tags": "pris,modell"
+    },
+    {
+      "title": "Hvilken målgruppe skal vi fokusere på først?",
+      "description": "Seks potensielle segmenter. De kan ikke dekke alle. Velg ett segment som første target, begrunn valget, og forklar hvordan produktet og markedsføringen må tilpasses.",
+      "priority": "high",
+      "tags": "segmentering,fokus"
+    },
+    {
+      "title": "Hva er de største feilene vi kan gjøre i første 6 måneder?",
+      "description": "Identifiser 3-5 konkrete feil teamet kan gjøre som ville satt hele lanseringen i fare. For hver feil: hvordan gjenkjenner vi den tidlig, og hvordan unngår vi den?",
+      "priority": "high",
+      "tags": "risiko,feilmoduser"
+    },
+    {
+      "title": "Hva gjør vi hvis en konkurrent kopierer oss?",
+      "description": "Tripletex eller Fiken kan ha samme AI på markedet innen 6 måneder. Lag en konkret defensiv plan: hva gjør vi for å bygge forsprang nå, og hva gjør vi den dagen de lanserer sitt?",
+      "priority": "medium",
+      "tags": "konkurranse,forsvar"
+    },
+    {
+      "title": "Trenger vi å ansette før lansering?",
+      "description": "5 personer er lite for en offentlig lansering. Hvilke roller mangler? Skal vi ansette før eller vente til vi har første 100 betalende kunder? Hvor kritisk er hver rolle?",
+      "priority": "medium",
+      "tags": "bemanning,timing"
+    }
+  ]
+}

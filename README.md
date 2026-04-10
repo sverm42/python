@@ -240,9 +240,20 @@ Sverm gjør ingenting selv med auth. Den kaller `claude` eller `codex` som subpr
 
 Se `examples/` for ferdige JSON-configs du kan bruke som utgangspunkt:
 
-- **`boligkjop.json`** — En norsk familie vurderer boligkjøp. Universelt relaterbar, 5 akser, 5 cases. *(Kjøres som innebygd demo.)*
-- **`restaurant.json`** — Restaurantlansering i ny bydel. Markedsføring, meny, prissetting. *(Kommer i v1.1.)*
-- **`produktlansering.json`** — Ny SaaS-tjeneste. Go-to-market, prismodell, første kunder. *(Kommer i v1.1.)*
+- **[`boligkjop.json`](./examples/boligkjop.json)** — En norsk småbarnsfamilie vurderer å kjøpe rekkehus. Universelt relaterbar, 5 akser, 5 cases. *(Kjøres som innebygd demo.)*
+- **[`restaurant.json`](./examples/restaurant.json)** — Maria (kokk) vurderer å åpne bistro i Bjerke. Forretningsperspektiv, finansiering, lansering, konsept.
+- **[`karriere.json`](./examples/karriere.json)** — Anders (42) har fått startup-tilbud. Personlig beslutning med familie, økonomi og psykologi.
+- **[`produktlansering.json`](./examples/produktlansering.json)** — Norsk AI-bokføring-SaaS klar for offentlig lansering. Go-to-market, pris, segment, konkurranse.
+- **[`kommune-beslutning.json`](./examples/kommune-beslutning.json)** — Mo kommune vurderer 120 MNOK flerbrukshall mot opposisjonens renoverings-alternativ. Offentlig sektor, politikk, verdiprioritering.
+
+Alle fem er designet med 5 akser × 5-10 vektede ord per akse, med beskrivelser på ordene. Kopier en av dem som utgangspunkt, tilpass til ditt eget domene.
+
+## Dokumentasjon
+
+Utover denne README finnes det to dype tekniske dokumenter:
+
+- **[docs/SEED-DESIGN.md](./docs/SEED-DESIGN.md)** — Hvordan skrive frequency seeds som faktisk produserer forskjellige perspektiver. Regler for vekting, vanlige feil, kvalitetssjekkliste, workflow fra tom fil til første flight.
+- **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** — Teknisk oversikt: moduler, datamodell, prosess-livssyklus, fil-kontrakter, ekstensjonspunkter. For deg som vil forstå koden under panseret eller utvide sverm.
 
 ---
 

@@ -1,0 +1,112 @@
+{
+  "name": "kommune-flerbrukshall",
+  "domain": "Mo kommune (13 000 innbyggere, Vestland) vurderer å bygge en ny, sentrumsnær flerbrukshall til 120 MNOK. Hallen skal kunne brukes til idrett, kultur, konferanser og større arrangementer. Finansieringen fordeler seg på kommunen (60 MNOK), fylkeskommunen (30 MNOK) og statlig tippemiddel-tilskudd (30 MNOK). Opposisjonspartiene foreslår i stedet å oppgradere eksisterende idrettshall for 40 MNOK og bruke det resterende på skolevedlikehold og eldreomsorg. Ordfører må ta stilling og kommunestyret skal vedta beslutningen om 8 uker.",
+  "goal": "Hjelp kommunestyret med en grundig, realistisk vurdering av flerbrukshall-forslaget. Sammenlign med opposisjonens alternativ. Ikke gi et politisk svar, men et analytisk grunnlag som dekker økonomi, behov, konsekvenser og rettferdighet.",
+  "key_info": [
+    "Mo kommune: 13 000 innbyggere, aldersfordeling typisk for Vestland (20% under 18, 25% over 65)",
+    "Kommuneøkonomi: balanserte budsjetter siste 5 år, men uten stor investeringsrom",
+    "Eksisterende idrettshall er fra 1987, slitt men funksjonell, brukt av 12 lokale idrettslag",
+    "Foreslått ny hall: 2400 m², full håndballbane, scene, løselige seterader for 800 personer",
+    "Statlig tippemiddel-tilskudd krever ferdigstilling innen 3 år — 'bruk det eller mist det'",
+    "Opposisjonens alternativ: renovering av eksisterende hall (ny gulv, ventilasjon, garderober) + 80 MNOK til skolevedlikehold og eldreomsorg",
+    "Næringslivet støtter ny hall (konferansepotensial)",
+    "Foreldre og idrettslag er splittet — noen vil ha ny hall, andre vil ha flere gymsal-timer på skolene",
+    "Eldrerådet stiller seg skeptisk — har bedt om bedre tilbud i flere år",
+    "Valg om 18 måneder"
+  ],
+  "axes": [
+    {
+      "name": "rolle",
+      "words": [
+        {"word": "ordfører", "weight": 0.70, "description": "Helhetsansvar, politisk realisme, strategi"},
+        {"word": "rådmann", "weight": 0.75, "description": "Faglig vurdering, driftskonsekvenser, langsiktig økonomi"},
+        {"word": "innbygger", "weight": 0.65, "description": "Hva får jeg ut av det? Hva mister jeg?"},
+        {"word": "næringsliv", "weight": 0.55, "description": "Vekst, ringvirkninger, attraktivitet"},
+        {"word": "opposisjon", "weight": 0.50, "description": "Alternative prioriteringer, kritisk perspektiv"},
+        {"word": "fagorganisasjon", "weight": 0.40, "description": "Ansattes vilkår, drift, vedlikehold, arbeidsmiljø"},
+        {"word": "framtidens-innbygger", "weight": 0.20, "description": "De som ikke har stemmerett ennå"}
+      ]
+    },
+    {
+      "name": "tidshorisont",
+      "words": [
+        {"word": "inneværende-periode", "weight": 0.60, "description": "Neste 4 år — politisk realpolitikk"},
+        {"word": "10år", "weight": 0.75, "description": "Normalt tidsrom for slike investeringer"},
+        {"word": "25år", "weight": 0.65, "description": "Byggets reelle levetid, demografiske endringer"},
+        {"word": "50år", "weight": 0.40, "description": "Generasjonsperspektiv — byggets arvlinje"},
+        {"word": "umiddelbart", "weight": 0.35, "description": "Hva skjer i år 1 — anleggsfase, forstyrrelser"}
+      ]
+    },
+    {
+      "name": "verdikompass",
+      "words": [
+        {"word": "likeverd", "weight": 0.65, "description": "Hvem får tilgang? Hvem betaler? Er det rettferdig?"},
+        {"word": "effektivitet", "weight": 0.60, "description": "Mest nytte per krone, unngå sløseri"},
+        {"word": "bærekraft", "weight": 0.55, "description": "Miljø, langsiktig drift, energibruk"},
+        {"word": "tradisjon", "weight": 0.45, "description": "Hva bevarer vi? Hva er vår identitet som kommune?"},
+        {"word": "innovasjon", "weight": 0.35, "description": "Kan vi gjøre noe nytt og smart i stedet?"},
+        {"word": "demokrati", "weight": 0.30, "description": "Er prosessen rettferdig? Har alle blitt hørt?"}
+      ]
+    },
+    {
+      "name": "motstand",
+      "words": [
+        {"word": "politisk", "weight": 0.70, "description": "Posisjoneringer i kommunestyret, neste valg"},
+        {"word": "økonomisk", "weight": 0.65, "description": "Press på driftsbudsjett, opprettholdelseskostnader"},
+        {"word": "faglig", "weight": 0.50, "description": "Er dette riktig tiltak? Er størrelse riktig?"},
+        {"word": "folkelig", "weight": 0.45, "description": "Folkeavstemning? Protester? Underskriftsaksjon?"},
+        {"word": "juridisk", "weight": 0.25, "description": "Lovverk, tilskuddsregler, innsigelser"},
+        {"word": "praktisk", "weight": 0.20, "description": "Tomt, grunnforhold, entreprenør-kapasitet"}
+      ]
+    },
+    {
+      "name": "alternativer",
+      "words": [
+        {"word": "ny-hall", "weight": 0.70, "description": "Vedta som foreslått, med eventuelle justeringer"},
+        {"word": "renovering", "weight": 0.65, "description": "Opposisjonens alternativ — lavere ambisjon"},
+        {"word": "utsette", "weight": 0.55, "description": "Vent 2-3 år, re-vurder under neste periode"},
+        {"word": "tredje-vei", "weight": 0.50, "description": "Mindre hall, delvis renovering, fases"},
+        {"word": "privatisere", "weight": 0.30, "description": "OPS-modell, privat finansiering, langsiktig leieavtale"},
+        {"word": "samarbeid", "weight": 0.25, "description": "Felles løsning med nabokommunen"}
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "title": "Bør Mo kommune bygge den nye flerbrukshallen?",
+      "description": "Gi en helhetlig anbefaling — ja, nei, eller et modifisert alternativ. Vei de viktigste hensynene mot hverandre og begrunn konklusjonen.",
+      "priority": "critical",
+      "tags": "beslutning,helhet"
+    },
+    {
+      "title": "Er 120 MNOK en realistisk totalkostnad?",
+      "description": "Offentlige byggprosjekter går ofte over budsjett. Vurder sannsynligheten for kostnadsoverskridelse og hva det vil bety for kommunens økonomi. Gi et 'mest sannsynlig' anslag.",
+      "priority": "high",
+      "tags": "økonomi,risiko"
+    },
+    {
+      "title": "Hva er de reelle driftskonsekvensene?",
+      "description": "Investeringen er 120 MNOK, men drift koster noe hvert år. Energi, bemanning, vedlikehold, forsikring. Lag et realistisk anslag for årlige driftskostnader og vurder hvordan det påvirker kommunens økonomi over tid.",
+      "priority": "high",
+      "tags": "drift,langsiktig"
+    },
+    {
+      "title": "Hva sier opposisjonens alternativ som ordfører bør ta på alvor?",
+      "description": "Opposisjonen vil ha renovering + 80 MNOK til skole og eldreomsorg. Ikke avfeie det som politikk — analyser ærlig hva som er de reelle argumentene og om de står seg.",
+      "priority": "high",
+      "tags": "alternativer,analyse"
+    },
+    {
+      "title": "Hvem vinner og hvem taper?",
+      "description": "Identifiser konkrete grupper som vinner og taper på hvert av de to hovedalternativene. Ikke bare generaliseringer — tenk på eldre, unge, idrettsutøvere, skoleelever, ansatte, næringsliv, framtidige innbyggere.",
+      "priority": "medium",
+      "tags": "konsekvens,rettferdighet"
+    },
+    {
+      "title": "Finnes det en tredje vei verdt å utforske?",
+      "description": "Er det mulig å lage et mellom-alternativ som dekker mer av behovene innenfor stramme rammer? Utforsk kreative løsninger som verken ordføreren eller opposisjonen har nevnt.",
+      "priority": "medium",
+      "tags": "alternativer,kreativitet"
+    }
+  ]
+}
