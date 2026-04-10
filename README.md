@@ -40,21 +40,30 @@ Begge CLI-ene fungerer på macOS, Windows og Linux. Valget handler om hvilken AI
 
 Det eneste sverm gjør er å spawne N parallelle CLI-instanser med forskjellige prompter. Hvordan du betaler for dem, bestemmes av CLI-konfigurasjonen din — ikke av sverm.
 
-Installer sverm via pipx (anbefalt) eller pip:
+Installer sverm. Du har tre alternativer — velg det som fungerer på maskinen din:
 
 ```bash
-# pipx — globalt tilgjengelig kommando
+# 1. pipx (anbefalt hvis du har det — isolerer installasjonen i eget venv)
 pipx install git+https://github.com/sverm42/python.git
 
-# pip — hvis du foretrekker lokal installasjon
+# 2. pip --user (fungerer UTEN admin-rettigheter — bra for låste work-maskiner)
+python3 -m pip install --user git+https://github.com/sverm42/python.git
+
+# 3. pip (standard — trenger skrivetilgang til Python-miljøet)
 pip install git+https://github.com/sverm42/python.git
 ```
+
+**Er du på en jobb-PC med begrensede admin-rettigheter?** Bruk alternativ 2 (`pip install --user`). Da installeres sverm i hjemmemappa di (`~/.local/`) uten å trenge IT-godkjenning. Du må eventuelt legge til `~/.local/bin` i PATH-en din etterpå hvis shell-en ikke finner `sverm`-kommandoen.
 
 Etter installasjon har du kommandoen `sverm` i PATH. Verifiser:
 
 ```bash
 sverm --help
 ```
+
+Hvis kommandoen ikke finnes, legg til user-bin-mappa i PATH:
+- **macOS / Linux:** `export PATH="$HOME/.local/bin:$PATH"` (legg til i `~/.zshrc` eller `~/.bashrc`)
+- **Windows:** `%APPDATA%\Python\Python310\Scripts` bør legges til i system-PATH (eller bruk full path: `py -m sverm.cli`)
 
 ### 2. Kjør det innebygde demo-prosjektet
 
@@ -318,14 +327,16 @@ Hvis du ser `Python 3.10.x` eller høyere, gå videre. Ellers:
 - **Windows:** Last ned fra [python.org/downloads](https://www.python.org/downloads/) — viktig: huk av "Add Python to PATH" under installasjonen
 - **Linux:** `sudo apt install python3.12` (Debian/Ubuntu) eller bruk pakkehåndtereren din
 
-#### Steg 2 — pipx (for global installasjon)
+#### Steg 2 — pipx (valgfritt, men anbefalt)
+
+`pipx` er en wrapper rundt `pip` som installerer verktøy i isolerte venvs. Bra hvis du har admin-rettigheter. **Hvis du står på en jobb-PC med IT-restriksjoner, hopp over dette steget** — du kan bruke `pip install --user` i Steg 4 i stedet.
 
 ```bash
 # macOS
 brew install pipx
 pipx ensurepath
 
-# Windows (i PowerShell)
+# Windows (PowerShell — fungerer uten admin)
 python -m pip install --user pipx
 python -m pipx ensurepath
 
@@ -334,9 +345,9 @@ sudo apt install pipx
 pipx ensurepath
 ```
 
-Lukk og åpne terminalen på nytt etter `pipx ensurepath` så den oppdaterte PATH-en blir aktiv.
+Lukk og åpne terminalen på nytt etter `pipx ensurepath`. Verifiser: `pipx --version`
 
-Verifiser: `pipx --version`
+**Jobb-PC uten admin?** Hopp til Steg 4 og bruk `pip install --user` i stedet. Du trenger ikke pipx.
 
 #### Steg 3 — AI-CLI (Claude Code eller Codex)
 
@@ -379,8 +390,16 @@ Offisiell dokumentasjon: [github.com/openai/codex](https://github.com/openai/cod
 
 #### Steg 4 — Installer sverm
 
+Velg alternativet som fungerer på din maskin:
+
+**Alt. A — pipx (hvis du installerte det i Steg 2):**
 ```bash
 pipx install git+https://github.com/sverm42/python.git
+```
+
+**Alt. B — pip --user (fungerer UTEN admin-rettigheter, bra for jobb-PCer):**
+```bash
+python3 -m pip install --user git+https://github.com/sverm42/python.git
 ```
 
 Verifiser:
@@ -389,6 +408,15 @@ sverm --help
 ```
 
 Du burde se kommandoene `setup`, `launch`, `inspect`, `mirror`, `debrief`.
+
+**Hvis `sverm`-kommandoen ikke finnes** (vanlig med `pip install --user`), må du legge user-bin-mappa til PATH-en:
+
+- **macOS / Linux:** Legg til i `~/.zshrc` eller `~/.bashrc`:
+  ```bash
+  export PATH="$HOME/.local/bin:$PATH"
+  ```
+  Lukk og åpne terminalen.
+- **Windows:** Søk opp "Edit environment variables for your account" og legg til `%APPDATA%\Python\Python310\Scripts` i PATH (juster til din Python-versjon). Alternativt kjør sverm via `py -m sverm.cli ...`.
 
 #### Steg 5 — Last ned demo-prosjektet
 
@@ -424,11 +452,14 @@ cat 10-projects/1-boligkjop/30-debrief/FLT_002_debrief.md
 
 | Symptom | Sannsynlig årsak | Løsning |
 |---------|------------------|---------|
-| `command not found: sverm` | pipx PATH ikke aktiv | Kjør `pipx ensurepath`, åpne ny terminal |
+| `command not found: sverm` | PATH inneholder ikke user-bin | macOS/Linux: `export PATH="$HOME/.local/bin:$PATH"`. Windows: legg til `%APPDATA%\Python\Python3xx\Scripts` i PATH |
+| `command not found: sverm` (pipx-bruker) | pipx PATH ikke aktiv | Kjør `pipx ensurepath`, åpne ny terminal |
 | `command not found: claude` eller `codex` | CLI ikke installert | Gå tilbake til Steg 3 |
 | Flight starter men ingen outputs | CLI ikke logget inn | Kjør `claude login` / `codex login` |
-| Python-feil om versjon | Python < 3.10 | Oppgrader Python |
+| Python-feil om versjon | Python < 3.10 | Oppgrader Python (eller bruk `py -3.10` på Windows) |
+| `pip install` feiler med admin-feil | Manglende rettigheter | Bruk `pip install --user ...` istedenfor `pip install ...` |
 | "No runtime found" | Ingen CLI i PATH | Sjekk `which claude` eller `which codex` |
+| Pip avviser pakken pga Python-versjon | Du har Python < 3.10 | Sverm krever 3.10+. Sjekk `python3 --version`. På låste maskiner kan du installere portable Python via [python.org](https://python.org) til hjemmemappa di uten admin |
 
 Fortsatt problemer? Lag en issue på [github.com/sverm42/python/issues](https://github.com/sverm42/python/issues) eller skriv til raymond@sverm.ai.
 

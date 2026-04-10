@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "svermai"
-version = "1.1.1"
+version = "1.1.2"
 description = "Multi-perspektiv AI-analyse — frequency seeds for å differensiere N parallelle AI-instanser"
 readme = "README.md"
 requires-python = ">=3.10"
