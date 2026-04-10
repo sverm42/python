@@ -132,35 +132,65 @@ class ClaudeRuntime(Runtime):
     ) -> subprocess.Popen:
         resolved = self.resolve_model(model)
 
-        # Skriv prompt til fil, pipe via stdin
+        # Finn claude-binæren i PATH
+        claude_bin = shutil.which("claude")
+        if claude_bin is None:
+            raise RuntimeError(
+                "Fant ikke Claude Code CLI ('claude' i PATH). "
+                "Installer fra https://docs.claude.com/en/docs/claude-code."
+            )
+
+        # Skriv prompt til fil — sendes via stdin til claude-prosessen
         prompt_file = output_path.parent / f"{instance_id}_prompt.md"
         prompt_file.write_text(prompt, encoding="utf-8")
 
+        # Sørg for at output-mappene finnes
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Miljø: isoler fra en eventuell parent Claude Code-prosess
         proc_env = os.environ.copy()
         proc_env["CLAUDE_CODE_MAX_OUTPUT_TOKENS"] = "128000"
+        proc_env.setdefault("PYTHONIOENCODING", "utf-8")
         for key in ["CLAUDECODE", "CLAUDE_CODE_ENTRYPOINT", "CLAUDE_CODE_EXECPATH"]:
             proc_env.pop(key, None)
         if env:
             proc_env.update(env)
 
-        # Bygg et wrapper-script som:
-        # 1. Kjører claude -p med prompten via stdin
-        # 2. Fanger output til _output.md
-        # 3. Lager .done-fil når ferdig
-        done_path = output_path.parent / f"{instance_id}.done"
-        wrapper_script = (
-            f'claude -p --model {resolved} --output-format text --max-turns 50 '
-            f'< "{prompt_file}" > "{output_path}" 2>> "{log_path}" ; '
-            f'touch "{done_path}"'
-        )
+        # Åpne fil-handles — må leve gjennom hele subprocess-livet.
+        # launch.py lukker dem etter at prosessen har terminert.
+        # stdout og stderr går begge til log_path. output_path skrives av
+        # Claude selv via Write-verktøyet basert på prompten.
+        stdin_handle = prompt_file.open("r", encoding="utf-8")
+        log_handle = log_path.open("w", encoding="utf-8")
 
-        log_path.write_text("", encoding="utf-8")  # opprett tom loggfil
+        cmd = [
+            claude_bin, "-p",
+            "--model", resolved,
+            "--output-format", "text",
+            "--max-turns", "50",
+            "--permission-mode", "bypassPermissions",
+            "--add-dir", str(output_path.parent),
+        ]
 
-        return subprocess.Popen(
-            ["bash", "-c", wrapper_script],
-            cwd=str(cwd),
-            env=proc_env,
-        )
+        try:
+            proc = subprocess.Popen(
+                cmd,
+                cwd=str(cwd),
+                stdin=stdin_handle,
+                stdout=log_handle,
+                stderr=subprocess.STDOUT,
+                env=proc_env,
+            )
+        except Exception:
+            stdin_handle.close()
+            log_handle.close()
+            raise
+
+        # Stash handles slik at launch.py kan lukke dem etter prosess-eksitt
+        proc._sverm_prompt_handle = stdin_handle  # type: ignore[attr-defined]
+        proc._sverm_log_handle = log_handle  # type: ignore[attr-defined]
+        return proc
 
 
 # ============================================================
@@ -351,29 +381,35 @@ _RUNTIMES: dict[str, type[Runtime]] = {
 
 
 def detect_runtime() -> Runtime:
-    """Auto-detekter tilgjengelig runtime. Claude prioriteres på Mac."""
-    from sverm.platform import detect_platform
-    
-    platform = detect_platform()
-    
-    # Mac: prøv Claude først
-    if platform.is_macos:
-        claude = ClaudeRuntime()
-        if claude.is_available():
-            return claude
-    
-    # Windows/Linux: prøv Codex først
-    codex = CodexRuntime()
-    if codex.is_available():
-        return codex
-    
-    # Fallback: prøv den andre
+    """Auto-detekter tilgjengelig runtime.
+
+    Claude Code prioriteres hvis begge er installert, uavhengig av plattform.
+    Sverm fungerer like godt med begge — valget avhenger av hvilken CLI du
+    har autentisert og hvilket abonnement/API-nøkkel du har.
+
+    Override ved å sette miljøvariabelen SVERM_RUNTIME til 'claude', 'codex'
+    eller 'dry-run'.
+    """
+    # Eksplisitt override via miljøvariabel
+    override = os.environ.get("SVERM_RUNTIME", "").strip().lower()
+    if override in _RUNTIMES:
+        runtime = _RUNTIMES[override]()
+        if runtime.is_available() or override == "dry-run":
+            return runtime
+
+    # Claude prioriteres hvis tilgjengelig (mest modent per v1.0)
     claude = ClaudeRuntime()
     if claude.is_available():
         return claude
-    
+
+    # Codex som fallback
+    codex = CodexRuntime()
+    if codex.is_available():
+        return codex
+
     raise RuntimeError(
-        "Ingen runtime funnet. Installer Claude Code (claude) eller Codex (codex)."
+        "Ingen runtime funnet. Installer Claude Code (claude) eller "
+        "OpenAI Codex (codex) og sørg for at CLI-en er i PATH."
     )
 
 

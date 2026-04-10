@@ -27,8 +27,10 @@ Sverm-metodikken løser dette ved å gi hver instans et unikt frequency seed: 3-
 ### 1. Installasjon
 
 Du trenger Python 3.11 eller nyere og én av:
-- **[Claude Code CLI](https://docs.claude.com/en/docs/claude-code)** (`claude`) — anbefalt for macOS og Linux
-- **[OpenAI Codex CLI](https://github.com/openai/codex)** (`codex`) — anbefalt for Windows
+- **[Claude Code CLI](https://docs.claude.com/en/docs/claude-code)** (`claude`)
+- **[OpenAI Codex CLI](https://github.com/openai/codex)** (`codex`)
+
+Begge CLI-ene fungerer på macOS, Windows og Linux. Valget handler om hvilken AI-leverandør du foretrekker — ikke om hvilken plattform du er på. Har du Claude Max eller Pro-abonnement, velg Claude Code. Har du ChatGPT Plus eller Pro, velg Codex. Har du begge, fungerer begge.
 
 **Viktig om kostnad — sverm krever IKKE en API-nøkkel.** Sverm kaller CLI-en din (`claude` eller `codex`) som subprocess og arver autentiseringen den allerede har. Det betyr:
 
@@ -214,10 +216,11 @@ Etter `sverm setup min-config.json`:
 
 ## Runtime-valg
 
-`sverm` abstraherer over AI-runtimen. Koden fungerer på Mac, Windows og Linux — men hvilken AI-CLI som er tilgjengelig varierer:
+`sverm` abstraherer over AI-runtimen via en enkel auto-detect. Både [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) og [OpenAI Codex CLI](https://github.com/openai/codex) fungerer på macOS, Windows og Linux — du velger basert på hvilken AI-leverandør du foretrekker og hvilket abonnement/API-nøkkel du har.
 
-- **macOS / Linux**: [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) er den mest modne opsjonen. `sverm` auto-detekterer `claude` i PATH.
-- **Windows**: [OpenAI Codex CLI](https://github.com/openai/codex) fungerer godt. Sett `CODEX_BIN` hvis binæren ikke er i PATH.
+- **Claude Code** er mest modent per v1.0 og prioriteres automatisk hvis begge er installert
+- **OpenAI Codex** fungerer som fullverdig alternativ. Sett `CODEX_BIN` hvis binæren ikke er i PATH
+- **Override**: Sett miljøvariabelen `SVERM_RUNTIME=claude`, `SVERM_RUNTIME=codex` eller `SVERM_RUNTIME=dry-run` for å tvinge valget
 - **Dry-run**: `--dry-run`-flagget lar deg teste setup og seed-allokering uten å starte ekte AI-prosesser. Nyttig for å verifisere at configen din er riktig.
 
 ### Autentisering — abonnement eller API-nøkkel?
@@ -313,15 +316,18 @@ Lukk og åpne terminalen på nytt etter `pipx ensurepath` så den oppdaterte PAT
 
 Verifiser: `pipx --version`
 
-#### Steg 3 — AI-CLI (Claude Code ELLER Codex)
+#### Steg 3 — AI-CLI (Claude Code eller Codex)
 
-Du må ha *minst én* av disse installert og logget inn.
+Du må ha *minst én* av disse installert og logget inn. Begge fungerer på macOS, Windows og Linux. Valget avhenger av hvilken AI-leverandør du foretrekker.
 
-**Alternativ A: Claude Code CLI (anbefalt for macOS og Linux)**
+**Alternativ A: Claude Code CLI**
 
 ```bash
-# Installasjon
+# macOS / Linux
 curl -fsSL https://claude.ai/install.sh | sh
+
+# Windows (PowerShell)
+irm https://claude.ai/install.ps1 | iex
 
 # Logg inn (åpner nettleser)
 claude login
@@ -330,10 +336,12 @@ claude login
 claude -p "Si 'hei' og ingenting annet"
 ```
 
-**Alternativ B: OpenAI Codex CLI (anbefalt for Windows)**
+Offisiell installasjonsdokumentasjon: [docs.claude.com/en/docs/claude-code](https://docs.claude.com/en/docs/claude-code)
+
+**Alternativ B: OpenAI Codex CLI**
 
 ```bash
-# Installasjon — krever Node.js 18+
+# Krever Node.js 18+ på alle plattformer
 npm install -g @openai/codex
 
 # Logg inn
@@ -342,6 +350,8 @@ codex login
 # Verifiser
 codex exec "Si 'hei' og ingenting annet"
 ```
+
+Offisiell dokumentasjon: [github.com/openai/codex](https://github.com/openai/codex)
 
 > **Om kostnad:** Har du **Claude Max/Pro** eller **ChatGPT Plus/Pro**, bruker CLI-en abonnementet ditt etter innlogging — ingen API-nøkkel nødvendig. Har du ingen av delene, må du ha en API-nøkkel fra [console.anthropic.com](https://console.anthropic.com) eller [platform.openai.com](https://platform.openai.com).
 
@@ -417,7 +427,7 @@ sverm launch focus 1 --project 1 --small -n 4 --dry-run
 
 **Requirements:**
 - Python 3.11+
-- [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) (macOS/Linux) or [OpenAI Codex CLI](https://github.com/openai/codex) (Windows)
+- Either [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) or [OpenAI Codex CLI](https://github.com/openai/codex) — both work on macOS, Windows and Linux. Pick whichever AI provider you already have a subscription or API key for.
 
 **License:** PolyForm Noncommercial 1.0.0 — free for research, teaching, personal projects, and evaluation. Commercial use requires a separate agreement. Contact raymond@sverm.ai.
 
