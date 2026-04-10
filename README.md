@@ -3,7 +3,7 @@
 > **Multi-perspektiv AI-analyse.** N instanser, samme problem, ulike perspektiver. En metodikk for å se samme spørsmål fra 9 vinkler samtidig — uten at instansene smelter sammen til en gjennomsnittsanalyse.
 
 [![Lisens: PolyForm NC 1.0](https://img.shields.io/badge/lisens-PolyForm_NC_1.0-blue.svg)](./LICENSE)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-green.svg)](https://www.python.org)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-green.svg)](https://www.python.org)
 [![sverm.ai](https://img.shields.io/badge/sverm-.ai-purple.svg)](https://sverm.ai)
 
 `sverm` er orkestreringsmotoren bak metodikken fra [sverm.ai](https://sverm.ai). Den lar deg angripe et problem fra mange vinkler samtidig ved å starte N AI-instanser parallelt — hver med sin egen *frequency seed*: et sett vektede ord som farger perspektivet uten å låse det.
@@ -26,7 +26,7 @@ Sverm-metodikken løser dette ved å gi hver instans et unikt frequency seed: 3-
 
 ### 1. Installasjon
 
-Du trenger Python 3.11 eller nyere og én av:
+Du trenger Python 3.10 eller nyere og én av:
 - **[Claude Code CLI](https://docs.claude.com/en/docs/claude-code)** (`claude`)
 - **[OpenAI Codex CLI](https://github.com/openai/codex)** (`codex`)
 
@@ -305,14 +305,14 @@ Mer info: [sverm.tech](https://sverm.tech).
 
 Gjør disse stegene hjemme før du kommer. Hele sjekklisten tar omtrent 20-30 minutter hvis du ikke har noe installert fra før, og 5 minutter hvis du allerede har Python og en AI-CLI. Har du problemer, ta kontakt på [sverm.tech](https://sverm.tech) eller skriv til raymond@sverm.ai.
 
-#### Steg 1 — Python 3.11 eller nyere
+#### Steg 1 — Python 3.10 eller nyere
 
 Sjekk hva du har:
 ```bash
 python3 --version
 ```
 
-Hvis du ser `Python 3.11.x` eller høyere, gå videre. Ellers:
+Hvis du ser `Python 3.10.x` eller høyere, gå videre. Ellers:
 
 - **macOS:** `brew install python@3.12` (krever [Homebrew](https://brew.sh))
 - **Windows:** Last ned fra [python.org/downloads](https://www.python.org/downloads/) — viktig: huk av "Add Python to PATH" under installasjonen
@@ -427,7 +427,7 @@ cat 10-projects/1-boligkjop/30-debrief/FLT_002_debrief.md
 | `command not found: sverm` | pipx PATH ikke aktiv | Kjør `pipx ensurepath`, åpne ny terminal |
 | `command not found: claude` eller `codex` | CLI ikke installert | Gå tilbake til Steg 3 |
 | Flight starter men ingen outputs | CLI ikke logget inn | Kjør `claude login` / `codex login` |
-| Python-feil om versjon | Python < 3.11 | Oppgrader Python |
+| Python-feil om versjon | Python < 3.10 | Oppgrader Python |
 | "No runtime found" | Ingen CLI i PATH | Sjekk `which claude` eller `which codex` |
 
 Fortsatt problemer? Lag en issue på [github.com/sverm42/python/issues](https://github.com/sverm42/python/issues) eller skriv til raymond@sverm.ai.
@@ -448,7 +448,7 @@ sverm launch focus 1 --project 1 --small -n 4 --dry-run
 ```
 
 **Requirements:**
-- Python 3.11+
+- Python 3.10+
 - Either [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) or [OpenAI Codex CLI](https://github.com/openai/codex) — both work on macOS, Windows and Linux. Pick whichever AI provider you already have a subscription or API key for.
 
 **License:** PolyForm Noncommercial 1.0.0 — free for research, teaching, personal projects, and evaluation. Commercial use requires a separate agreement. Contact raymond@sverm.ai.

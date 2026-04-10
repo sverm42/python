@@ -2,6 +2,11 @@
 
 All notable changes to `sverm` are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com), versioned by [SemVer](https://semver.org).
 
+## [1.1.1] — 2026-04-10
+
+### Fikset
+- **Python-krav senket fra 3.11 til 3.10.** Det opprinnelige `>=3.11`-kravet i `pyproject.toml` var arbitrært — koden bruker ingen 3.11-spesifikke features (alle filer har `from __future__ import annotations`, ingen `match/case`, ingen `tomllib`, ingen `ExceptionGroup`). Workshop-deltakere med Python 3.10 (Ubuntu 22.04 LTS, mange Windows-maskiner) ble unødvendig blokkert. Alt fungerer identisk på 3.10.
+
 ## [1.1.0] — 2026-04-10
 
 Workshop-klargjøring for "KI-sverm i praksis" (Quben, Kongsberg, 15. april 2026).
@@ -42,7 +47,7 @@ Første publiserte versjon. Workshop-klar release for "KI-sverm i praksis" (Qube
 - PolyForm Noncommercial License 1.0.0
 
 ### Tekniske detaljer
-- Python 3.11+
+- Python 3.11+ *(senket til 3.10+ i v1.1.1)*
 - Ingen eksterne Python-dependencies (kun stdlib)
 - SQLite-basert prosjektdatabase (seeds, cases, flights, instances, outputs, debriefs)
 - UTF-8 overalt — full støtte for æøå i alle lag (kode, DB, filer, prompter)

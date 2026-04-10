@@ -4,10 +4,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "svermai"
-version = "1.1.0"
+version = "1.1.1"
 description = "Multi-perspektiv AI-analyse — frequency seeds for å differensiere N parallelle AI-instanser"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 license = { text = "PolyForm-Noncommercial-1.0.0" }
 authors = [
     { name = "Kristiansen Sverm ENK", email = "raymond@sverm.ai" },
@@ -21,6 +21,7 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",

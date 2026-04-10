@@ -23,7 +23,7 @@ Takk for interessen! `sverm` er et non-commercial open-source-prosjekt lisensier
 6. Åpne en pull request mot `main`
 
 ### Kode-stil
-- Python 3.11+
+- Python 3.10+ (bruker `from __future__ import annotations` for å støtte nyere type-hint-syntax)
 - Type hints der det gir mening
 - Docstrings på norsk (matcher resten av kodebasen)
 - UTF-8 overalt — bruk ekte æ, ø, å, ingen ASCII-erstatninger
