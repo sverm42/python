@@ -69,11 +69,13 @@ cd sverm
 sverm inspect --project 1
 
 # Dry-run (tester setup, starter ikke ekte AI)
-sverm launch focus 1 --project 1 --small -n 4 --dry-run
+sverm launch focus 1 --project 1 --dry-run
 
-# Ekte kjøring: 9 instanser på case #1
-sverm launch focus 1 --project 1 --medium -n 9
+# Ekte kjøring: 4 små instanser på case #1 (default)
+sverm launch focus 1 --project 1
 ```
+
+Default er nå `--small -n 4` — fire raske, billige instanser. Det er nok til å se metodikken i praksis uten å brenne mye av abonnementskvoten din. Når du er komfortabel, kan du eskalere til `--medium -n 9` eller `--large -n 9` for dypere analyser.
 
 Etter en vellykket flight finner du:
 - **Rå outputs** i `10-projects/1-boligkjop/20-flights/FLT_XXX/VS_XXXX_output.md`
@@ -89,8 +91,13 @@ cp examples/boligkjop.json min-analyse.json
 # rediger min-analyse.json: bytt ut domain, goal, axes og cases
 
 sverm setup min-analyse.json
-sverm launch focus 1 --medium -n 9 --project 2
+# → opprettes i ~/sverm-projects/1-min-analyse/
+#   (eller cwd/10-projects/ hvis du står i en klonet sverm-repo)
+
+sverm launch focus 1 --project 1
 ```
+
+Default lagringssted for nye prosjekter er `~/sverm-projects/`. Vil du ha dem et annet sted, sett `SVERM_PROJECTS_DIR` eller bruk `--projects-dir`.
 
 ---
 
@@ -208,9 +215,13 @@ Etter `sverm setup min-config.json`:
 
 | Flagg | Claude Code | Codex | Bruk |
 |-------|-------------|-------|------|
-| `--small` | haiku | gpt-5.4-mini | Raskt og billig, bra for testing og bredde |
-| `--medium` *(default)* | sonnet | gpt-5.4 | Balansert — anbefalt for de fleste |
-| `--large` | opus | o3 | Dyp og dyr, for komplekse analyser |
+| `--small` *(default)* | haiku | gpt-5.4-mini | Raskt og billig — bra for testing, workshops og bredde |
+| `--medium` | sonnet | gpt-5.4 | Balansert — anbefalt når du har validert seeds og cases |
+| `--large` | opus | gpt-5.4 *(samme)* | Dyp og dyr. Codex har per april 2026 ingen høyere reasoning-tier enn gpt-5.4. |
+
+Default er `--small -n 4` slik at workshopdeltakere og nye brukere ikke brenner abonnementskvoten på første flight. Eskalér når du har sett metodikken fungere på små instanser.
+
+`--timeout SECONDS` setter maks ventetid på en hel flight (default: 900s). 0 = uendelig. Hvis timeout overskrides, dreper sverm hengende prosesser og lager debrief med det som har landet.
 
 ---
 

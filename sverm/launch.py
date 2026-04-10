@@ -16,6 +16,7 @@ Flyten:
 from __future__ import annotations
 
 import json
+import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
@@ -232,32 +233,54 @@ def monitor_flight(
     instance_count: int,
     processes: list[RuntimeProcess],
     poll_interval: float = 2.0,
+    timeout: int = 900,
 ) -> int:
     """Overvåk flight-progresjon via .done-filer.
-    
+
     Returnerer antall ferdige instanser.
+
+    `timeout` er maks antall sekunder hele flighten får på seg fra start til
+    siste instans har landet. 0 = uendelig (gammel oppførsel). Hvis timeout
+    overskrides, terminerer monitor alle gjenværende prosesser, skriver en
+    timeout-markør i output-filen og returnerer antall instanser som rakk
+    å lande.
     """
     print(f"\n  Monitoring {instance_count} instances...")
+    if timeout > 0:
+        print(f"  Timeout: {timeout}s for hele flighten")
     last_count = 0
+    start = time.monotonic()
+
+    def _close_handles(proc: subprocess.Popen) -> None:
+        for attr in ("_sverm_prompt_handle", "_sverm_log_handle"):
+            handle = getattr(proc, attr, None)
+            if handle is not None and not handle.closed:
+                handle.close()
+
+    def _force_done(runtime_proc: RuntimeProcess, reason: str) -> None:
+        """Skriv en stub-output og .done-fil for en instans som ikke landet."""
+        if not runtime_proc.output_path.exists():
+            runtime_proc.output_path.write_text(
+                "# Flight output mangler\n\n"
+                f"Instans: {runtime_proc.instance_id}\n"
+                f"Årsak: {reason}\n",
+                encoding="utf-8",
+            )
+        done_path = flight_dir / f"{runtime_proc.instance_id}.done"
+        done_path.touch()
 
     while True:
         for runtime_proc in processes:
             proc = runtime_proc.process
             if proc.poll() is not None:
-                for attr in ("_sverm_prompt_handle", "_sverm_log_handle"):
-                    handle = getattr(proc, attr, None)
-                    if handle is not None and not handle.closed:
-                        handle.close()
+                _close_handles(proc)
                 done_path = flight_dir / f"{runtime_proc.instance_id}.done"
                 if not done_path.exists():
-                    if not runtime_proc.output_path.exists():
-                        runtime_proc.output_path.write_text(
-                            "# Flight output mangler\n\n"
-                            f"Instans: {runtime_proc.instance_id}\n"
-                            f"Prosessen avsluttet med kode {proc.returncode} før output-filen ble skrevet.\n",
-                            encoding="utf-8",
-                        )
-                    done_path.touch()
+                    _force_done(
+                        runtime_proc,
+                        f"prosessen avsluttet med kode {proc.returncode} "
+                        "før output-filen ble skrevet",
+                    )
 
         done_files = list(flight_dir.glob("*.done"))
         done_count = len(done_files)
@@ -276,6 +299,32 @@ def monitor_flight(
             print(f"  WARNING: All processes exited but only {done_count}/{instance_count} .done files found")
             return done_count
 
+        # Timeout-vakt: drep hengende prosesser og marker dem som timeout.
+        if timeout > 0 and (time.monotonic() - start) > timeout:
+            print(
+                f"  TIMEOUT: {timeout}s nådd — terminerer "
+                f"{instance_count - done_count} hengende instans(er)"
+            )
+            for runtime_proc in processes:
+                proc = runtime_proc.process
+                done_path = flight_dir / f"{runtime_proc.instance_id}.done"
+                if done_path.exists():
+                    continue
+                if proc.poll() is None:
+                    try:
+                        proc.terminate()
+                        try:
+                            proc.wait(timeout=5)
+                        except subprocess.TimeoutExpired:
+                            proc.kill()
+                            proc.wait(timeout=5)
+                    except Exception:
+                        pass
+                _close_handles(proc)
+                _force_done(runtime_proc, f"timeout etter {timeout}s")
+            done_count = len(list(flight_dir.glob("*.done")))
+            return done_count
+
         time.sleep(poll_interval)
 
 
@@ -287,14 +336,15 @@ def launch_focus(
     *,
     project_dir: Path,
     case_id: int,
-    model: str = "sonnet",
-    instance_count: int = 9,
+    model: str = "small",
+    instance_count: int = 4,
     runtime: Optional[Runtime] = None,
     dry_run: bool = False,
     monitor: bool = True,
+    timeout: int = 900,
 ) -> str:
     """Start en focus-flight.
-    
+
     Returnerer flight-ID.
     """
     from sverm.runtime import DryRunRuntime
@@ -453,7 +503,7 @@ def launch_focus(
 
     # Monitor
     if monitor and not dry_run:
-        landed = monitor_flight(flight_dir, instance_count, processes)
+        landed = monitor_flight(flight_dir, instance_count, processes, timeout=timeout)
         if landed >= instance_count:
             db.update_flight_status(db_path, flight_id, "landed")
             lock_dir = flight_dir / "DEBRIEF.lock"

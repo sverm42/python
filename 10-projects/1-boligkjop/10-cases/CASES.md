@@ -17,9 +17,9 @@
 
 | Modus | Kommando | Beskrivelse |
 |-------|---------|-------------|
-| **focus** | `sverm launch focus <case#> --project 1 --medium -n 9` | Alle instanser jobber på **én** case (dybde) |
+| **focus** | `sverm launch focus <case#> --project 1` | Alle instanser jobber på **én** case (dybde) |
 
-Modell: `--medium` (default) · `--small` (rask/billig) · `--large` (dyp). `-n 9` = 9 instanser. `--dry-run` for test.
+Default: `--small -n 4` (raskt/billig). Eskaler med `--medium -n 9` eller `--large -n 9` når oppsettet er validert. `--dry-run` for test uten å bruke tokens.
 
 ---
 
@@ -34,8 +34,8 @@ Vurder boligkjøpet helhetlig. Er dette en klok beslutning gitt økonomi, famili
 
 **Kjør:**
 ```bash
-sverm launch focus 1 --project 1 --medium -n 9
-# --small (rask/billig) · --large (dyp) · --dry-run (test)
+sverm launch focus 1 --project 1
+# default: --small -n 4 · --medium -n 9 · --large -n 9 · --dry-run
 ```
 
 ---
@@ -49,8 +49,8 @@ Identifiser den viktigste risikoen og foreslå hvordan familien kan redusere ell
 
 **Kjør:**
 ```bash
-sverm launch focus 2 --project 1 --medium -n 9
-# --small (rask/billig) · --large (dyp) · --dry-run (test)
+sverm launch focus 2 --project 1
+# default: --small -n 4 · --medium -n 9 · --large -n 9 · --dry-run
 ```
 
 ---
@@ -64,8 +64,8 @@ Utforsk hva som skjer hvis familien venter, flytter et annet sted, eller investe
 
 **Kjør:**
 ```bash
-sverm launch focus 3 --project 1 --medium -n 9
-# --small (rask/billig) · --large (dyp) · --dry-run (test)
+sverm launch focus 3 --project 1
+# default: --small -n 4 · --medium -n 9 · --large -n 9 · --dry-run
 ```
 
 ---
@@ -79,8 +79,8 @@ sverm launch focus 3 --project 1 --medium -n 9
 
 **Kjør:**
 ```bash
-sverm launch focus 4 --project 1 --medium -n 9
-# --small (rask/billig) · --large (dyp) · --dry-run (test)
+sverm launch focus 4 --project 1
+# default: --small -n 4 · --medium -n 9 · --large -n 9 · --dry-run
 ```
 
 ---
@@ -94,8 +94,8 @@ Barna er 7 og 10 nå. Om 5 år er de 12 og 15 — tenåringer som trenger eget r
 
 **Kjør:**
 ```bash
-sverm launch focus 5 --project 1 --medium -n 9
-# --small (rask/billig) · --large (dyp) · --dry-run (test)
+sverm launch focus 5 --project 1
+# default: --small -n 4 · --medium -n 9 · --large -n 9 · --dry-run
 ```
 
 ---

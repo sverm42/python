@@ -95,7 +95,7 @@ All endring går gjennom `sverm/db.py` som bruker `connect()` + context manager 
 
 ## Prosess-livssyklus
 
-Én `sverm launch focus 1 --project 1 --medium -n 9` kjøring:
+Én `sverm launch focus 1 --project 1` kjøring (default `--small -n 4`):
 
 ```
 1.  CLI-kommando → cli.py → cmd_launch()

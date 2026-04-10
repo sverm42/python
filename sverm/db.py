@@ -387,9 +387,9 @@ def generate_cases_md(db_path: Path, project_dir: Path | None = None) -> str:
         lines.append("")
         lines.append("| Modus | Kommando | Beskrivelse |")
         lines.append("|-------|---------|-------------|")
-        lines.append(f"| **focus** | `sverm launch focus <case#> --project {proj_num} --medium -n 9` | Alle instanser jobber på **én** case (dybde) |")
+        lines.append(f"| **focus** | `sverm launch focus <case#> --project {proj_num}` | Alle instanser jobber på **én** case (dybde) |")
         lines.append("")
-        lines.append("Modell: `--medium` (default) · `--small` (rask/billig) · `--large` (dyp). `-n 9` = 9 instanser. `--dry-run` for test.")
+        lines.append("Default: `--small -n 4` (raskt/billig). Eskaler med `--medium -n 9` eller `--large -n 9` når oppsettet er validert. `--dry-run` for test uten å bruke tokens.")
         lines.append("")
 
         # Cases
@@ -415,8 +415,8 @@ def generate_cases_md(db_path: Path, project_dir: Path | None = None) -> str:
             # Launch-kommando
             lines.append("**Kjør:**")
             lines.append("```bash")
-            lines.append(f"sverm launch focus {c['id']} --project {proj_num} --medium -n 9")
-            lines.append(f"# --small (rask/billig) · --large (dyp) · --dry-run (test)")
+            lines.append(f"sverm launch focus {c['id']} --project {proj_num}")
+            lines.append(f"# default: --small -n 4 · --medium -n 9 · --large -n 9 · --dry-run")
             lines.append("```")
             lines.append("")
 

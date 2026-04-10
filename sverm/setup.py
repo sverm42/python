@@ -89,11 +89,14 @@ def generate_claude_md(config: ProjectConfig, project_dir: Path) -> str:
         "# Se alle åpne cases",
         "sverm launch --help",
         "",
-        "# Start flight: 9 instanser på case #1",
-        "sverm launch focus 1 --medium -n 9",
+        "# Start flight: 4 små instanser på case #1 (default)",
+        "sverm launch focus 1",
         "",
         "# Dry-run (test uten å starte ekte instanser)",
-        "sverm launch focus 1 --medium -n 4 --dry-run",
+        "sverm launch focus 1 --dry-run",
+        "",
+        "# Eskaler når oppsettet er validert",
+        "sverm launch focus 1 --medium -n 9",
         "```",
         "",
         "Hvis du ikke har `sverm` installert globalt, kan du bytte ut `sverm` med",
@@ -223,8 +226,9 @@ def setup_project(
     print(f"  {project_dir}")
     print()
     print("  Neste steg:")
-    print(f"    sverm launch focus 1 --medium -n 9 --project {project_dir}")
-    print(f"    sverm launch focus 1 --medium -n 4 --dry-run --project {project_dir}")
+    print(f"    sverm launch focus 1 --project {project_dir} --dry-run")
+    print(f"    sverm launch focus 1 --project {project_dir}")
+    print("  (default: --small -n 4. Eskaler med --medium -n 9 når oppsettet er validert.)")
     print("  ==========================================")
 
     return project_dir

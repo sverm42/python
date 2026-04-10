@@ -24,14 +24,19 @@ from typing import Optional
 # Generiske alias → faktiske modellnavn per runtime.
 # "small/medium/large" er runtime-agnostisk.
 # "haiku/sonnet/opus" er Claude-spesifikke men mappes for begge.
+#
+# Codex (OpenAI) har per april 2026 ingen dedikert "large" reasoning-tier
+# utover gpt-5.4 — flagship-modellen. "large" og "opus" mappes derfor til
+# gpt-5.4 inntil OpenAI publiserer en høyere reasoning-modell. Brukere som
+# vil ha noe annet kan sette --model direkte eller overstyre via SVERM_RUNTIME.
 
 CODEX_MODELS: dict[str, str] = {
     "small": "gpt-5.4-mini",
     "medium": "gpt-5.4",
-    "large": "o3",
+    "large": "gpt-5.4",
     "haiku": "gpt-5.4-mini",
     "sonnet": "gpt-5.4",
-    "opus": "o3",
+    "opus": "gpt-5.4",
 }
 
 CLAUDE_MODELS: dict[str, str] = {

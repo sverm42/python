@@ -53,11 +53,14 @@ Hvis du er en AI-instans spawnet av dette systemet:
 # Se alle åpne cases
 sverm launch --help
 
-# Start flight: 9 instanser på case #1
-sverm launch focus 1 --medium -n 9
+# Start flight: 4 små instanser på case #1 (default)
+sverm launch focus 1
 
 # Dry-run (test uten å starte ekte instanser)
-sverm launch focus 1 --medium -n 4 --dry-run
+sverm launch focus 1 --dry-run
+
+# Eskaler når oppsettet er validert
+sverm launch focus 1 --medium -n 9
 ```
 
 Hvis du ikke har `sverm` installert globalt, kan du bytte ut `sverm` med
