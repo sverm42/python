@@ -276,6 +276,130 @@ Denne versjonen er spesielt klargjort for workshopen **"KI-sverm i praksis"** p�
 
 Mer info: [sverm.tech](https://sverm.tech).
 
+### Før workshopen: Installeringssjekkliste
+
+Gjør disse stegene hjemme før du kommer. Hele sjekklisten tar omtrent 20-30 minutter hvis du ikke har noe installert fra før, og 5 minutter hvis du allerede har Python og en AI-CLI. Har du problemer, ta kontakt på [sverm.tech](https://sverm.tech) eller skriv til raymond@sverm.ai.
+
+#### Steg 1 — Python 3.11 eller nyere
+
+Sjekk hva du har:
+```bash
+python3 --version
+```
+
+Hvis du ser `Python 3.11.x` eller høyere, gå videre. Ellers:
+
+- **macOS:** `brew install python@3.12` (krever [Homebrew](https://brew.sh))
+- **Windows:** Last ned fra [python.org/downloads](https://www.python.org/downloads/) — viktig: huk av "Add Python to PATH" under installasjonen
+- **Linux:** `sudo apt install python3.12` (Debian/Ubuntu) eller bruk pakkehåndtereren din
+
+#### Steg 2 — pipx (for global installasjon)
+
+```bash
+# macOS
+brew install pipx
+pipx ensurepath
+
+# Windows (i PowerShell)
+python -m pip install --user pipx
+python -m pipx ensurepath
+
+# Linux
+sudo apt install pipx
+pipx ensurepath
+```
+
+Lukk og åpne terminalen på nytt etter `pipx ensurepath` så den oppdaterte PATH-en blir aktiv.
+
+Verifiser: `pipx --version`
+
+#### Steg 3 — AI-CLI (Claude Code ELLER Codex)
+
+Du må ha *minst én* av disse installert og logget inn.
+
+**Alternativ A: Claude Code CLI (anbefalt for macOS og Linux)**
+
+```bash
+# Installasjon
+curl -fsSL https://claude.ai/install.sh | sh
+
+# Logg inn (åpner nettleser)
+claude login
+
+# Verifiser
+claude -p "Si 'hei' og ingenting annet"
+```
+
+**Alternativ B: OpenAI Codex CLI (anbefalt for Windows)**
+
+```bash
+# Installasjon — krever Node.js 18+
+npm install -g @openai/codex
+
+# Logg inn
+codex login
+
+# Verifiser
+codex exec "Si 'hei' og ingenting annet"
+```
+
+> **Om kostnad:** Har du **Claude Max/Pro** eller **ChatGPT Plus/Pro**, bruker CLI-en abonnementet ditt etter innlogging — ingen API-nøkkel nødvendig. Har du ingen av delene, må du ha en API-nøkkel fra [console.anthropic.com](https://console.anthropic.com) eller [platform.openai.com](https://platform.openai.com).
+
+#### Steg 4 — Installer sverm
+
+```bash
+pipx install git+https://github.com/sverm42/python.git
+```
+
+Verifiser:
+```bash
+sverm --help
+```
+
+Du burde se kommandoene `setup`, `launch`, `inspect`, `mirror`, `debrief`.
+
+#### Steg 5 — Last ned demo-prosjektet
+
+```bash
+git clone https://github.com/sverm42/python.git sverm
+cd sverm
+```
+
+#### Steg 6 — Dry-run (test uten å bruke tokens)
+
+```bash
+sverm launch focus 1 --project 1 --small -n 4 --dry-run
+```
+
+Hvis du ser linjer som begynner med `FOCUS MODE: Case #1`, `Flight: FLT_001 (4 instances)`, og til slutt `FLIGHT FLT_001 LAUNCHED` — da fungerer installasjonen. Du er klar for workshopen.
+
+#### Steg 7 — Ekte mini-flight (valgfritt, anbefalt)
+
+For å verifisere at AI-CLI-en din faktisk svarer:
+
+```bash
+sverm launch focus 1 --project 1 --small -n 2
+```
+
+Dette starter 2 haiku/gpt-5.4-mini-instanser på boligkjop-casen. Tar omtrent 1-2 minutter. Ser du `FLIGHT FLT_002 LAUNCHED` og deretter `Debrief: .../FLT_002_debrief.md`, er alt klart.
+
+Sjekk at debrief-filen har ekte AI-output:
+```bash
+cat 10-projects/1-boligkjop/30-debrief/FLT_002_debrief.md
+```
+
+#### Feilsøking
+
+| Symptom | Sannsynlig årsak | Løsning |
+|---------|------------------|---------|
+| `command not found: sverm` | pipx PATH ikke aktiv | Kjør `pipx ensurepath`, åpne ny terminal |
+| `command not found: claude` eller `codex` | CLI ikke installert | Gå tilbake til Steg 3 |
+| Flight starter men ingen outputs | CLI ikke logget inn | Kjør `claude login` / `codex login` |
+| Python-feil om versjon | Python < 3.11 | Oppgrader Python |
+| "No runtime found" | Ingen CLI i PATH | Sjekk `which claude` eller `which codex` |
+
+Fortsatt problemer? Lag en issue på [github.com/sverm42/python/issues](https://github.com/sverm42/python/issues) eller skriv til raymond@sverm.ai.
+
 ---
 
 ## English Summary
