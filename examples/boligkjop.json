@@ -1,0 +1,102 @@
+{
+  "name": "boligkjop",
+  "domain": "En norsk småbarnsfamilie vurderer å kjøpe rekkehus i en forstad. De må vurdere økonomi, familieliv, lokasjon, risiko og langsiktig planlegging før de bestemmer seg.",
+  "goal": "Hjelp familien å vurdere boligkjøpet fra mange vinkler — økonomi, familie, lokasjon, timing, risiko — og gi konkrete råd som tar hensyn til helheten, ikke bare ett perspektiv.",
+  "key_info": [
+    "Familien består av to voksne og to barn (7 og 10 år)",
+    "Samlet bruttoinntekt: 1.2 MNOK. Egenkapital: 800 000 kr",
+    "De ser på et rekkehus i en forstad ca 30 minutter fra sentrum. Prisantydning: 6.5 MNOK",
+    "Nåværende leilighet kan selges for ca 4.2 MNOK (netto etter lån)",
+    "Rentenivået har steget 1.5 prosentpoeng siste år. Analytikere er uenige om videre utvikling",
+    "Skolen i det nye området er rangert som middels god",
+    "Reisevei til jobb øker fra 15 til 35 minutter hver vei",
+    "Nabolaget har gode uteområder, lekeplasser og idrettsanlegg",
+    "Barna må bytte skole hvis familien flytter"
+  ],
+  "axes": [
+    {
+      "name": "perspektiv",
+      "words": [
+        {"word": "økonom", "weight": 0.80, "description": "Cashflow, rentesensitivitet, avkastning, alternativkostnad"},
+        {"word": "forelder", "weight": 0.70, "description": "Barnas skole, lekemiljø, trygghet, sosial forankring"},
+        {"word": "pragmatiker", "weight": 0.55, "description": "Hverdagsflyt, logistikk, tidsbruk, stressnivå"},
+        {"word": "langtidsplanlegger", "weight": 0.45, "description": "10-15 års horisont, karriereløp, pensjon, arv"},
+        {"word": "risikoavers", "weight": 0.25, "description": "Worst-case scenarier, buffer, exit-muligheter"},
+        {"word": "opportunist", "weight": 0.10, "description": "Timing, markedsforhandling, smarte trekk"}
+      ]
+    },
+    {
+      "name": "tidshorisont",
+      "words": [
+        {"word": "umiddelbart", "weight": 0.65, "description": "Neste 3-6 måneder — praktisk gjennomføring"},
+        {"word": "mellomlang", "weight": 0.70, "description": "1-5 år — hverdagslivets realitet"},
+        {"word": "lang", "weight": 0.50, "description": "5-15 år — når barna blir tenåringer og flytter hjemmefra"},
+        {"word": "generasjon", "weight": 0.20, "description": "20+ år — arv, pensjon, eldre dager"}
+      ]
+    },
+    {
+      "name": "risiko",
+      "words": [
+        {"word": "renterisk", "weight": 0.75, "description": "Hva hvis rentene stiger videre?"},
+        {"word": "markedsrisk", "weight": 0.60, "description": "Hva hvis boligmarkedet faller 20%?"},
+        {"word": "jobbrisk", "weight": 0.55, "description": "Hva hvis en av de voksne mister jobben?"},
+        {"word": "helserisk", "weight": 0.30, "description": "Sykdom, ulykke, familiehendelser"},
+        {"word": "skilsmisse", "weight": 0.20, "description": "Hvordan påvirker et felles huskjøp en skilsmisse?"},
+        {"word": "klimarisk", "weight": 0.15, "description": "Flom, mold, bygningsskader, endret klima"}
+      ]
+    },
+    {
+      "name": "verdi",
+      "words": [
+        {"word": "livskvalitet", "weight": 0.75, "description": "Hva betyr godt liv for denne familien?"},
+        {"word": "fleksibilitet", "weight": 0.65, "description": "Kan vi selge lett? Kan vi leie ut? Kan vi endre planer?"},
+        {"word": "forankring", "weight": 0.50, "description": "Å slå rot, bygge nettverk, kjenne naboer"},
+        {"word": "tid", "weight": 0.50, "description": "40 min ekstra reisevei per dag er 10 000 min per år"},
+        {"word": "prestasjon", "weight": 0.25, "description": "Status, signal til omverdenen, selvbilde"},
+        {"word": "enkelhet", "weight": 0.15, "description": "Mindre ting å vedlikeholde, mindre stress"}
+      ]
+    },
+    {
+      "name": "beslutningsmodell",
+      "words": [
+        {"word": "analytisk", "weight": 0.70, "description": "Regnearket regjerer — tall, prognoser, scenarier"},
+        {"word": "intuitiv", "weight": 0.60, "description": "Føles riktig, magefølelse, helhet"},
+        {"word": "konsensusbasert", "weight": 0.50, "description": "Alle i familien må være enige — også barna"},
+        {"word": "ekspertbasert", "weight": 0.35, "description": "Lytt til megler, rådgiver, familie, venner"},
+        {"word": "eksperimentell", "weight": 0.10, "description": "Test hypoteser, juster underveis, ikke bind alt nå"}
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "title": "Bør familien kjøpe rekkehuset nå?",
+      "description": "Vurder boligkjøpet helhetlig. Er dette en klok beslutning gitt økonomi, familieform og markedet? Hva bør de spørre om, tenke gjennom, eller vente med? Gi en klar anbefaling med begrunnelse.",
+      "priority": "critical",
+      "tags": "beslutning,helhet"
+    },
+    {
+      "title": "Hva er den største risikoen ved dette kjøpet?",
+      "description": "Identifiser den viktigste risikoen og foreslå hvordan familien kan redusere eller forsikre seg mot den. Bruk seeden din til å fokusere på én type risiko — ikke forsøk å dekke alt.",
+      "priority": "high",
+      "tags": "risiko,analyse"
+    },
+    {
+      "title": "Hva er alternativene hvis de IKKE kjøper nå?",
+      "description": "Utforsk hva som skjer hvis familien venter, flytter et annet sted, eller investerer pengene på andre måter. Hva mister de? Hva vinner de? Lag minst to konkrete alternative scenarier.",
+      "priority": "high",
+      "tags": "alternativer,opportunity-cost"
+    },
+    {
+      "title": "Hvordan påvirker den lengre reiseveien familien?",
+      "description": "35 minutter mot 15 minutter er 40 minutter mer per dag — 200 minutter i uken, 10 000 minutter per år. Utforsk hva dette koster i penger, tid, energi, og livsglede. Er det verdt det? Hvordan kompenseres det?",
+      "priority": "medium",
+      "tags": "livskvalitet,kostnad"
+    },
+    {
+      "title": "Er boligen riktig størrelse for familien nå OG om 5 år?",
+      "description": "Barna er 7 og 10 nå. Om 5 år er de 12 og 15 — tenåringer som trenger eget rom og kanskje egen inngang. Om 15 år flytter de kanskje ut. Hva slags fleksibilitet bør familien planlegge for?",
+      "priority": "medium",
+      "tags": "framtid,vekst"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "svermai"
+version = "1.0.0"
+description = "Multi-perspektiv AI-analyse — frequency seeds for å differensiere N parallelle AI-instanser"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+authors = [
+    { name = "Kristiansen Sverm ENK", email = "raymond@sverm.ai" },
+]
+keywords = ["ai", "llm", "swarm", "multi-perspective", "frequency-seeds", "claude", "codex"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://sverm.ai"
+Repository = "https://github.com/sverm42/python"
+Issues = "https://github.com/sverm42/python/issues"
+
+[project.scripts]
+sverm = "sverm.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "." }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sverm*"]

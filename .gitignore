@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+# Obsidian
+.obsidian/
+
+# Claude Code
+.claude/
+
+# Sverm runtime artifacts — keep template/examples, ignore user projects
+10-projects/*/sverm.db
+10-projects/*/20-flights/
+10-projects/*/30-debrief/
+10-projects/*/99-system/
+
+# ...except the bundled demo
+!10-projects/1-boligkjop/sverm.db
+!10-projects/1-boligkjop/99-system/
+
+# Secrets — never commit
+*.env
+.secrets
+credentials
+*.pem
+*.key
+
+# Logs
+*.log
+logs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
