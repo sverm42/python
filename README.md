@@ -30,6 +30,14 @@ Du trenger Python 3.11 eller nyere og én av:
 - **[Claude Code CLI](https://docs.claude.com/en/docs/claude-code)** (`claude`) — anbefalt for macOS og Linux
 - **[OpenAI Codex CLI](https://github.com/openai/codex)** (`codex`) — anbefalt for Windows
 
+**Viktig om kostnad — sverm krever IKKE en API-nøkkel.** Sverm kaller CLI-en din (`claude` eller `codex`) som subprocess og arver autentiseringen den allerede har. Det betyr:
+
+- Har du **Claude Max-abonnement** og er logget inn via `claude login`? Da bruker sverm Max-abonnementet ditt — ingen ekstra kostnad, ingen API-nøkkel.
+- Har du **ChatGPT Plus/Pro** og er logget inn via `codex login`? Da bruker sverm det abonnementet — samme prinsipp.
+- Har du en **API-nøkkel** hos Anthropic eller OpenAI? Da bruker sverm den hvis CLI-en er konfigurert sånn.
+
+Det eneste sverm gjør er å spawne N parallelle CLI-instanser med forskjellige prompter. Hvordan du betaler for dem, bestemmes av CLI-konfigurasjonen din — ikke av sverm.
+
 Installer sverm via pipx (anbefalt) eller pip:
 
 ```bash
@@ -211,6 +219,17 @@ Etter `sverm setup min-config.json`:
 - **macOS / Linux**: [Claude Code CLI](https://docs.claude.com/en/docs/claude-code) er den mest modne opsjonen. `sverm` auto-detekterer `claude` i PATH.
 - **Windows**: [OpenAI Codex CLI](https://github.com/openai/codex) fungerer godt. Sett `CODEX_BIN` hvis binæren ikke er i PATH.
 - **Dry-run**: `--dry-run`-flagget lar deg teste setup og seed-allokering uten å starte ekte AI-prosesser. Nyttig for å verifisere at configen din er riktig.
+
+### Autentisering — abonnement eller API-nøkkel?
+
+Sverm gjør ingenting selv med auth. Den kaller `claude` eller `codex` som subprocess og arver den auth-tilstanden CLI-en allerede har. Dette betyr at du kan kjøre sverm med:
+
+1. **Claude Max / Pro-abonnement** — Etter `claude login` og OAuth-flyt, bruker sverm samme auth. Kall-ene teller mot abonnementsgrensen, ikke mot en API-konto.
+2. **ChatGPT Plus / Pro-abonnement** — Etter `codex login` fungerer det samme for Codex-runtimen.
+3. **Anthropic API-nøkkel** — Hvis `ANTHROPIC_API_KEY` er satt og `claude` er konfigurert sånn, brukes API-en. Du betaler per token.
+4. **OpenAI API-nøkkel** — Samme prinsipp for Codex.
+
+**For workshop-deltakere:** Har du allerede et Claude Max eller ChatGPT Plus-abonnement, trenger du INGEN API-nøkkel for å kjøre sverm. Logg inn i CLI-en på vanlig måte, og sverm bruker det du allerede betaler for.
 
 ---
 
