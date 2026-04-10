@@ -154,12 +154,12 @@ Eksempel fra boligkjøp-demoet:
     {
       "name": "perspektiv",
       "words": [
-        {"word": "økonom",          "weight": 0.80, "description": "Cashflow, rentesensitivitet, avkastning"},
-        {"word": "forelder",        "weight": 0.70, "description": "Barnas skole, lekemiljø, trygghet"},
-        {"word": "pragmatiker",     "weight": 0.55, "description": "Hverdagsflyt, tid, stressnivå"},
-        {"word": "langtidsplanlegger", "weight": 0.45},
-        {"word": "risikoavers",     "weight": 0.25},
-        {"word": "opportunist",     "weight": 0.10}
+        {"word": "økonom",             "weight": 0.80, "description": "Cashflow, rentesensitivitet, avkastning"},
+        {"word": "forelder",           "weight": 0.70, "description": "Barnas skole, lekemiljø, trygghet"},
+        {"word": "pragmatiker",        "weight": 0.55, "description": "Hverdagsflyt, tid, stressnivå"},
+        {"word": "langtidsplanlegger", "weight": 0.45, "description": "10-15 års horisont, karriereløp, pensjon, arv"},
+        {"word": "risikoavers",        "weight": 0.25, "description": "Worst-case scenarier, buffer, exit-muligheter"},
+        {"word": "opportunist",        "weight": 0.10, "description": "Timing, markedsforhandling, smarte trekk"}
       ]
     }
   ]
