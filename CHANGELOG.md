@@ -5,16 +5,13 @@ All notable changes to `sverm` are documented here. Format loosely follows [Keep
 ## [1.1.2] — 2026-04-10
 
 ### Lagt til
-- **`pip install --user`-instruksjoner som førsteklasses alternativ.** Workshopdeltakere på låste jobb-PCer (uten admin-rettigheter) trenger ikke pipx. README har nå tre installasjonsalternativer: pipx, `pip install --user`, og standard pip — med tydelig veiledning om hvilket man velger basert på maskin-restriksjoner.
+- **`pip install --user`-instruksjoner som førsteklasses alternativ** for brukere uten admin-rettigheter. README har nå tre installasjonsalternativer: pipx, `pip install --user`, og standard pip.
 - PATH-veiledning for `~/.local/bin` etter `pip install --user` (macOS/Linux/Windows-spesifikt).
-- Utvidet feilsøkingstabell med scenarioer for låste maskiner: PATH-problemer, admin-feil, portable Python-installasjon.
+- Utvidet feilsøkingstabell: PATH-problemer, admin-feil, portable Python.
 
 ### Endret
-- Workshop-sjekklisten Steg 2 (pipx) markerer nå pipx som **valgfritt** og peker til Steg 4 sin `pip install --user` for låste maskiner.
-- Workshop-sjekklisten Steg 4 viser begge installasjonsalternativer side om side.
-
-### Bakgrunn
-En workshopkunde på en låst jobb-PC kunne ikke installere v1.1.0 fordi (a) Python 3.11 ikke var installert, (b) IT-restriksjoner hindret oppgradering. v1.1.1 fikset Python-versjonen, men antakelsen om at «alle har pipx eller kan installere det» gjenstod. v1.1.2 fjerner denne antakelsen og gjør sverm trygt installerbar uten admin-rettigheter på alle tre plattformer.
+- Workshop-sjekklisten Steg 2 (pipx) markerer nå pipx som **valgfritt** og peker til `pip install --user` som alternativ.
+- Workshop-sjekklisten Steg 4 viser pipx og pip --user side om side.
 
 ## [1.1.1] — 2026-04-10
 
